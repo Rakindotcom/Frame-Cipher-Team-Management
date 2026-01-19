@@ -40,6 +40,13 @@ export default function Navbar() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                 </svg>
             )
+        },
+        {
+            to: '/clients', label: 'Clients', icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8m0 0h8m-8 0a2 2 0 00-2 2v6a2 2 0 002 2h8a2 2 0 002-2V8a2 2 0 00-2-2z" />
+                </svg>
+            )
         }
     ];
 
@@ -66,7 +73,7 @@ export default function Navbar() {
                         <Link to="/dashboard" className="flex items-center space-x-2 group">
                             <img
                                 src="/logo.png"
-                                alt="CKH Network"
+                                alt="Frame Cipher"
                                 className="w-10 shadow-lg group-hover:shadow-[--shadow-glow] transition-all duration-300"
                             />
                         </Link>

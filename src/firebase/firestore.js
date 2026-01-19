@@ -420,3 +420,68 @@ export const addNoticeComment = async (noticeId, comment) => {
         comments: arrayUnion(commentWithTimestamp)
     });
 };
+
+// ============ CLIENT OPERATIONS ============
+
+const CLIENTS_COLLECTION = 'clients';
+
+/**
+ * Create new client
+ * @param {Object} clientData 
+ * @returns {Promise<string>} client ID
+ */
+export const createClient = async (clientData) => {
+    const clientsRef = collection(db, CLIENTS_COLLECTION);
+    const docRef = await addDoc(clientsRef, {
+        ...clientData,
+        createdAt: serverTimestamp()
+    });
+    return docRef.id;
+};
+
+/**
+ * Get client by ID
+ * @param {string} clientId 
+ * @returns {Promise<Object|null>}
+ */
+export const getClient = async (clientId) => {
+    const clientRef = doc(db, CLIENTS_COLLECTION, clientId);
+    const clientDoc = await getDoc(clientRef);
+    if (clientDoc.exists()) {
+        return { id: clientDoc.id, ...clientDoc.data() };
+    }
+    return null;
+};
+
+/**
+ * Subscribe to all clients
+ * @param {function} callback 
+ * @returns {function} unsubscribe
+ */
+export const subscribeToClients = (callback) => {
+    const clientsRef = collection(db, CLIENTS_COLLECTION);
+    const q = query(clientsRef, orderBy('createdAt', 'desc'));
+    return onSnapshot(q, (snapshot) => {
+        const clients = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        callback(clients);
+    });
+};
+
+/**
+ * Update client
+ * @param {string} clientId 
+ * @param {Object} updates 
+ */
+export const updateClient = async (clientId, updates) => {
+    const clientRef = doc(db, CLIENTS_COLLECTION, clientId);
+    await updateDoc(clientRef, updates);
+};
+
+/**
+ * Delete client
+ * @param {string} clientId 
+ */
+export const deleteClient = async (clientId) => {
+    const clientRef = doc(db, CLIENTS_COLLECTION, clientId);
+    await deleteDoc(clientRef);
+};

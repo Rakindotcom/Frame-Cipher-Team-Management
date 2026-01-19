@@ -1,5 +1,5 @@
 /* ============================================
-CKH Network - Premium Design System
+Frame Cipher - Design System
 Dark Glassmorphism Theme with Monospace Font
 ============================================ */
 
@@ -13,43 +13,43 @@ CSS Custom Properties (Design Tokens)
 ============================================ */
 :root {
   /* Background Colors */
-  --bg-primary: #032014;
-  --bg-secondary: #093624;
-  --bg-tertiary: #07110d;
-  --bg-card: rgba(13, 74, 46, 0.7);
-  --bg-card-hover: rgba(17, 94, 57, 0.8);
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --bg-tertiary: #0f0f0f;
+  --bg-card: rgba(64, 64, 64, 0.7);
+  --bg-card-hover: rgba(80, 80, 80, 0.8);
 
   /* Glass Effect */
-  --glass-bg: rgba(9, 53, 35, 0.8);
-  --glass-border: rgba(20, 184, 166, 0.1);
-  --glass-border-hover: rgba(20, 184, 166, 0.2);
+  --glass-bg: rgba(42, 42, 42, 0.8);
+  --glass-border: rgba(156, 163, 175, 0.1);
+  --glass-border-hover: rgba(156, 163, 175, 0.2);
 
   /* Text Colors */
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
-  --text-accent: #38bdf8;
+  --text-accent: #9ca3af;
 
   /* Accent Colors */
-  --accent-cyan: #14b8a6;
-  --accent-purple: #093523;
-  --accent-pink: #14b8a6;
-  --accent-green: #093523;
+  --accent-cyan: #9ca3af;
+  --accent-purple: #6b7280;
+  --accent-pink: #9ca3af;
+  --accent-green: #6b7280;
   --accent-yellow: #f59e0b;
   --accent-red: #ef4444;
 
   /* Gradient */
-  --gradient-primary: linear-gradient(135deg, #093523 0%, #14b8a6 100%);
-  --gradient-secondary: linear-gradient(135deg, #0d4a2e 0%, #093523 100%);
-  --gradient-accent: linear-gradient(135deg, #14b8a6 0%, #093523 100%);
-  --gradient-success: linear-gradient(135deg, #093523 0%, #14b8a6 100%);
+  --gradient-primary: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+  --gradient-secondary: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+  --gradient-accent: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+  --gradient-success: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(9, 53, 35, 0.3);
-  --shadow-glow-purple: 0 0 20px rgba(9, 53, 35, 0.3);
+  --shadow-glow: 0 0 20px rgba(107, 114, 128, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(107, 114, 128, 0.3);
 
   /* Border Radius */
   --radius-sm: 0.375rem;
@@ -99,9 +99,9 @@ body::before {
   right: -10%;
   bottom: -10%;
   background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(9, 53, 35, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(20, 184, 166, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(9, 53, 35, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse at 20% 30%, rgba(107, 114, 128, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(107, 114, 128, 0.04) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
 }
@@ -131,7 +131,7 @@ body::before {
    Selection Styles
    ============================================ */
 ::selection {
-  background: rgba(9, 53, 35, 0.3);
+  background: rgba(107, 114, 128, 0.3);
   color: var(--text-primary);
 }
 
@@ -277,7 +277,7 @@ body::before {
 .input-dark:focus {
   outline: none;
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(147, 98, 64, 0.15);
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15);
 }
 
 .select-dark {
@@ -301,7 +301,7 @@ body::before {
 .select-dark:focus {
   outline: none;
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(147, 98, 64, 0.15);
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15);
 }
 
 .select-dark option {
@@ -330,7 +330,7 @@ body::before {
 .textarea-dark:focus {
   outline: none;
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(147, 98, 64, 0.15);
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15);
 }
 
 /* ============================================
@@ -347,18 +347,18 @@ body::before {
 }
 
 .badge-cyan {
-  background: rgba(147, 98, 64, 0.15);
+  background: rgba(156, 163, 175, 0.15);
   color: var(--accent-cyan);
 }
 
 .badge-purple {
-  background: rgba(147, 98, 64, 0.15);
+  background: rgba(107, 114, 128, 0.15);
   color: var(--accent-purple);
 }
 
 .badge-green {
-  background: rgba(180, 83, 9, 0.15);
-  color: var(--accent-yellow);
+  background: rgba(107, 114, 128, 0.15);
+  color: var(--accent-cyan);
 }
 
 .badge-yellow {
@@ -574,11 +574,11 @@ body::before {
 
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(147, 98, 64, 0.2);
+    box-shadow: 0 0 5px rgba(156, 163, 175, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(147, 98, 64, 0.4);
+    box-shadow: 0 0 20px rgba(156, 163, 175, 0.4);
   }
 }
 
@@ -722,8 +722,8 @@ body::before {
 }
 
 .priority-dot-low {
-  background: var(--accent-yellow);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(156, 163, 175, 0.5);
 }
 
 /* ============================================
@@ -1007,9 +1007,9 @@ body::before {
 }
 
 .sidebar-item-active {
-  background: linear-gradient(135deg, rgba(147, 98, 64, 0.15) 0%, rgba(147, 98, 64, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(156, 163, 175, 0.15) 0%, rgba(156, 163, 175, 0.15) 100%);
   color: var(--accent-cyan);
-  border: 1px solid rgba(147, 98, 64, 0.2);
+  border: 1px solid rgba(156, 163, 175, 0.2);
 }
 
 .sidebar-item-nested {
@@ -1100,7 +1100,7 @@ body::before {
 }
 
 .kanban-column-dragging {
-  background: rgba(147, 98, 64, 0.05);
+  background: rgba(156, 163, 175, 0.05);
   border-radius: var(--radius-lg);
 }
 

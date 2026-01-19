@@ -49,7 +49,7 @@ export default function LoginPage() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute w-96 h-96 -top-48 -left-48 bg-linear-to-br from-[--accent-cyan]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
                 <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-linear-to-br from-[--accent-cyan]/20 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute w-64 h-64 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-linear-to-br from-[--accent-pink]/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute w-64 h-64 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-linear-to-br from-[--accent-cyan]/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
             </div>
 
             <div className="max-w-sm w-full relative z-10">
@@ -57,11 +57,11 @@ export default function LoginPage() {
                 <div className="text-center mb-8 animate-fade-in-down">
                     <img
                         src="/logo.png"
-                        alt="CKH Network"
+                        alt="Frame Cipher"
                         className="w-32 mx-auto shadow-lg mb-4"
                     />
-                    <h1 className="text-3xl font-bold text-gradient">CKH Network</h1>
-                    <p className="text-[--text-muted] mt-2">Project Management Made Beautiful</p>
+                    <h1 className="text-3xl font-bold text-gradient">Frame Cipher</h1>
+                    <p className="text-[--text-muted] mt-2">Secure Project Framework</p>
                 </div>
 
                 {/* Login Card */}
@@ -86,7 +86,7 @@ export default function LoginPage() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="input-dark"
-                                placeholder="you@ckhnetwork.com"
+                                placeholder="you@company.com"
                                 required
                             />
                         </div>
@@ -141,13 +141,13 @@ export default function LoginPage() {
                     </form>
 
                     <p className="mt-6 text-center text-[--text-muted] text-xs">
-                        Contact your admin for account access
+                        Contact your Frame Cipher admin for access
                     </p>
                 </div>
 
                 {/* Footer */}
                 <p className="text-center text-[--text-muted] text-xs mt-6 animate-fade-in">
-                    Secure • Fast • Beautiful
+                    Secure • Encrypted • Reliable
                 </p>
             </div>
         </div>

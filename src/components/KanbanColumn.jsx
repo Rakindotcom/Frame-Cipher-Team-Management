@@ -5,14 +5,14 @@ const COLUMN_COLORS = {
     gray: 'border-[--text-muted]/30',
     cyan: 'border-[--accent-cyan]/30',
     purple: 'border-[--accent-cyan]/30',
-    green: 'border-[--accent-yellow]/30'
+    green: 'border-[--accent-cyan]/30'
 };
 
 const HEADER_COLORS = {
     gray: 'bg-[--text-muted]/10 text-[--text-muted]',
     cyan: 'bg-[--accent-cyan]/10 text-[--accent-cyan]',
     purple: 'bg-[--accent-cyan]/10 text-[--accent-cyan]',
-    green: 'bg-[--accent-yellow]/10 text-[--accent-yellow]'
+    green: 'bg-[--accent-cyan]/10 text-[--accent-cyan]'
 };
 
 export default function KanbanColumn({ column, onAddTask }) {
