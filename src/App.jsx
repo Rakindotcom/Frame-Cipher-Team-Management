@@ -5,6 +5,7 @@ import { TasksProvider } from './context/TasksContext';
 import { UsersProvider } from './context/UsersContext';
 import { NoticesProvider } from './context/NoticesContext';
 import { ClientsProvider } from './context/ClientsContext';
+import { FinanceProvider } from './context/FinanceContext';
 import { ToastProvider } from './components/Toast';
 import { ConfirmProvider } from './components/ConfirmDialog';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -16,6 +17,7 @@ import TaskDetailPage from './pages/TaskDetailPage';
 import UsersPage from './pages/UsersPage';
 import NoticesPage from './pages/NoticesPage';
 import ClientsPage from './pages/ClientsPage';
+import FinancePage from './pages/FinancePage';
 
 function AppRoutes() {
   return (
@@ -77,6 +79,14 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/finance"
+        element={
+          <ProtectedRoute adminOnly>
+            <FinancePage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
@@ -92,11 +102,13 @@ export default function App() {
             <TasksProvider>
               <NoticesProvider>
                 <ClientsProvider>
-                  <ToastProvider>
-                    <ConfirmProvider>
-                      <AppRoutes />
-                    </ConfirmProvider>
-                  </ToastProvider>
+                  <FinanceProvider>
+                    <ToastProvider>
+                      <ConfirmProvider>
+                        <AppRoutes />
+                      </ConfirmProvider>
+                    </ToastProvider>
+                  </FinanceProvider>
                 </ClientsProvider>
               </NoticesProvider>
             </TasksProvider>

@@ -56,3 +56,86 @@ export const TASK_PRIORITIES = ['low', 'medium', 'high'];
 
 // Role options for users
 export const USER_ROLES = ['admin', 'member'];
+
+/**
+ * @typedef {Object} RevenueEntry
+ * @property {string} id - Firestore document ID
+ * @property {number} amount - Revenue amount (positive number)
+ * @property {string} source - Revenue source/client
+ * @property {string} description - Revenue description
+ * @property {string} [projectId] - Optional associated project ID
+ * @property {string} category - Revenue category
+ * @property {string} date - ISO date string
+ * @property {string} createdBy - User ID of creator
+ * @property {Date|Object} createdAt - Creation timestamp
+ * @property {Date|Object} [updatedAt] - Last update timestamp
+ */
+
+/**
+ * @typedef {Object} ExpenseEntry
+ * @property {string} id - Firestore document ID
+ * @property {number} amount - Expense amount (positive number)
+ * @property {string} category - Expense category
+ * @property {string} description - Expense description
+ * @property {string} [projectId] - Optional associated project ID
+ * @property {string} [vendor] - Vendor/supplier name
+ * @property {string} date - ISO date string
+ * @property {string} createdBy - User ID of creator
+ * @property {Date|Object} createdAt - Creation timestamp
+ * @property {Date|Object} [updatedAt] - Last update timestamp
+ */
+
+/**
+ * @typedef {Object} Budget
+ * @property {string} id - Firestore document ID
+ * @property {string} name - Budget name
+ * @property {string} category - Budget category
+ * @property {number} allocatedAmount - Total allocated amount
+ * @property {number} spentAmount - Amount spent so far
+ * @property {string} [projectId] - Optional associated project ID
+ * @property {string} startDate - ISO date string for budget start
+ * @property {string} endDate - ISO date string for budget end
+ * @property {'active'|'completed'|'exceeded'} status - Budget status
+ * @property {string} createdBy - User ID of creator
+ * @property {Date|Object} createdAt - Creation timestamp
+ * @property {Date|Object} [updatedAt] - Last update timestamp
+ */
+
+/**
+ * @typedef {Object} DateRange
+ * @property {string} startDate - ISO date string
+ * @property {string} endDate - ISO date string
+ */
+
+/**
+ * @typedef {Object} ProjectFinancials
+ * @property {number} totalRevenue - Total revenue for project
+ * @property {number} totalExpenses - Total expenses for project
+ * @property {number} netProfit - Net profit (revenue - expenses)
+ * @property {RevenueEntry[]} revenues - Revenue entries for project
+ * @property {ExpenseEntry[]} expenses - Expense entries for project
+ */
+
+// Revenue categories
+export const REVENUE_CATEGORIES = [
+    'Client Payments',
+    'Project Revenue',
+    'Consulting Fees',
+    'License Revenue',
+    'Other Income'
+];
+
+// Expense categories
+export const EXPENSE_CATEGORIES = [
+    'Software & Tools',
+    'Hardware & Equipment',
+    'Marketing & Advertising',
+    'Office Supplies',
+    'Travel & Transportation',
+    'Professional Services',
+    'Utilities',
+    'Other Expenses'
+];
+
+// Budget statuses
+export const BUDGET_STATUSES = ['active', 'completed', 'exceeded'];

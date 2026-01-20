@@ -485,3 +485,193 @@ export const deleteClient = async (clientId) => {
     const clientRef = doc(db, CLIENTS_COLLECTION, clientId);
     await deleteDoc(clientRef);
 };
+
+// ============ FINANCE OPERATIONS ============
+
+const FINANCES_COLLECTION = 'finances';
+const BUDGETS_COLLECTION = 'budgets';
+
+/**
+ * Create new revenue entry
+ * @param {Object} revenueData 
+ * @returns {Promise<string>} revenue ID
+ */
+export const createRevenue = async (revenueData) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const docRef = await addDoc(financesRef, {
+        ...revenueData,
+        type: 'revenue',
+        createdAt: serverTimestamp()
+    });
+    return docRef.id;
+};
+
+/**
+ * Create new expense entry
+ * @param {Object} expenseData 
+ * @returns {Promise<string>} expense ID
+ */
+export const createExpense = async (expenseData) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const docRef = await addDoc(financesRef, {
+        ...expenseData,
+        type: 'expense',
+        createdAt: serverTimestamp()
+    });
+    return docRef.id;
+};
+
+/**
+ * Create new budget
+ * @param {Object} budgetData 
+ * @returns {Promise<string>} budget ID
+ */
+export const createBudget = async (budgetData) => {
+    const budgetsRef = collection(db, BUDGETS_COLLECTION);
+    const docRef = await addDoc(budgetsRef, {
+        ...budgetData,
+        spentAmount: 0,
+        status: 'active',
+        createdAt: serverTimestamp()
+    });
+    return docRef.id;
+};
+
+/**
+ * Subscribe to all financial entries (revenues and expenses)
+ * @param {function} callback 
+ * @returns {function} unsubscribe
+ */
+export const subscribeToFinances = (callback) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const q = query(financesRef, orderBy('createdAt', 'desc'));
+    return onSnapshot(q, (snapshot) => {
+        const finances = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        callback(finances);
+    });
+};
+
+/**
+ * Subscribe to revenues only
+ * @param {function} callback 
+ * @returns {function} unsubscribe
+ */
+export const subscribeToRevenues = (callback) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const q = query(financesRef, where('type', '==', 'revenue'), orderBy('createdAt', 'desc'));
+    return onSnapshot(q, (snapshot) => {
+        const revenues = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        callback(revenues);
+    });
+};
+
+/**
+ * Subscribe to expenses only
+ * @param {function} callback 
+ * @returns {function} unsubscribe
+ */
+export const subscribeToExpenses = (callback) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const q = query(financesRef, where('type', '==', 'expense'), orderBy('createdAt', 'desc'));
+    return onSnapshot(q, (snapshot) => {
+        const expenses = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        callback(expenses);
+    });
+};
+
+/**
+ * Subscribe to all budgets
+ * @param {function} callback 
+ * @returns {function} unsubscribe
+ */
+export const subscribeToBudgets = (callback) => {
+    const budgetsRef = collection(db, BUDGETS_COLLECTION);
+    const q = query(budgetsRef, orderBy('createdAt', 'desc'));
+    return onSnapshot(q, (snapshot) => {
+        const budgets = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        callback(budgets);
+    });
+};
+
+/**
+ * Update revenue entry
+ * @param {string} revenueId 
+ * @param {Object} updates 
+ */
+export const updateRevenue = async (revenueId, updates) => {
+    const revenueRef = doc(db, FINANCES_COLLECTION, revenueId);
+    await updateDoc(revenueRef, {
+        ...updates,
+        updatedAt: serverTimestamp()
+    });
+};
+
+/**
+ * Update expense entry
+ * @param {string} expenseId 
+ * @param {Object} updates 
+ */
+export const updateExpense = async (expenseId, updates) => {
+    const expenseRef = doc(db, FINANCES_COLLECTION, expenseId);
+    await updateDoc(expenseRef, {
+        ...updates,
+        updatedAt: serverTimestamp()
+    });
+};
+
+/**
+ * Update budget
+ * @param {string} budgetId 
+ * @param {Object} updates 
+ */
+export const updateBudget = async (budgetId, updates) => {
+    const budgetRef = doc(db, BUDGETS_COLLECTION, budgetId);
+    await updateDoc(budgetRef, {
+        ...updates,
+        updatedAt: serverTimestamp()
+    });
+};
+
+/**
+ * Delete revenue entry
+ * @param {string} revenueId 
+ */
+export const deleteRevenue = async (revenueId) => {
+    const revenueRef = doc(db, FINANCES_COLLECTION, revenueId);
+    await deleteDoc(revenueRef);
+};
+
+/**
+ * Delete expense entry
+ * @param {string} expenseId 
+ */
+export const deleteExpense = async (expenseId) => {
+    const expenseRef = doc(db, FINANCES_COLLECTION, expenseId);
+    await deleteDoc(expenseRef);
+};
+
+/**
+ * Delete budget
+ * @param {string} budgetId 
+ */
+export const deleteBudget = async (budgetId) => {
+    const budgetRef = doc(db, BUDGETS_COLLECTION, budgetId);
+    await deleteDoc(budgetRef);
+};
+
+/**
+ * Get financial entries for a specific project
+ * @param {string} projectId 
+ * @returns {Promise<{revenues: Array, expenses: Array}>}
+ */
+export const getProjectFinances = async (projectId) => {
+    const financesRef = collection(db, FINANCES_COLLECTION);
+    const q = query(financesRef, where('projectId', '==', projectId));
+    const snapshot = await getDocs(q);
+    
+    const finances = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const revenues = finances.filter(f => f.type === 'revenue');
+    const expenses = finances.filter(f => f.type === 'expense');
+    
+    return { revenues, expenses };
+};
