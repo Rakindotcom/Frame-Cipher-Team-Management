@@ -255,26 +255,26 @@ export default function ReportsSection() {
                                 </div>
                                 <div className="space-y-1">
                                     <div className="flex items-center space-x-2">
-                                        <span className="text-xs text-[--accent-green] w-16 flex-shrink-0">Revenue</span>
+                                        <span className="text-xs text-[--accent-green] w-16 shrink-0">Revenue</span>
                                         <div className="flex-1 bg-[--bg-tertiary] rounded-full h-2 min-w-0">
                                             <div
                                                 className="bg-[--accent-green] h-2 rounded-full"
                                                 style={{ width: `${revenueWidth}%` }}
                                             ></div>
                                         </div>
-                                        <span className="text-xs text-[--text-muted] w-24 text-right flex-shrink-0 truncate">
+                                        <span className="text-xs text-[--text-muted] w-24 text-right shrink-0 truncate">
                                             {formatCurrency(month.revenue)}
                                         </span>
                                     </div>
                                     <div className="flex items-center space-x-2">
-                                        <span className="text-xs text-[--accent-red] w-16 flex-shrink-0">Expenses</span>
+                                        <span className="text-xs text-[--accent-red] w-16 shrink-0">Expenses</span>
                                         <div className="flex-1 bg-[--bg-tertiary] rounded-full h-2 min-w-0">
                                             <div
                                                 className="bg-[--accent-red] h-2 rounded-full"
                                                 style={{ width: `${expenseWidth}%` }}
                                             ></div>
                                         </div>
-                                        <span className="text-xs text-[--text-muted] w-24 text-right flex-shrink-0 truncate">
+                                        <span className="text-xs text-[--text-muted] w-24 text-right shrink-0 truncate">
                                             {formatCurrency(month.expenses)}
                                         </span>
                                     </div>
