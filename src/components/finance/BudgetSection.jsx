@@ -37,7 +37,7 @@ export default function BudgetSection() {
         try {
             const budgetData = {
                 ...formData,
-                allocatedAmount: parseFloat(formData.allocatedAmount),
+                allocatedAmount: parseInt(formData.allocatedAmount, 10),
                 projectId: formData.projectId || null
             };
 
@@ -364,12 +364,11 @@ export default function BudgetSection() {
                             </label>
                             <input
                                 type="number"
-                                step="0.01"
                                 min="0"
                                 value={formData.allocatedAmount}
                                 onChange={(e) => setFormData({ ...formData, allocatedAmount: e.target.value })}
                                 className="input-dark w-full"
-                                placeholder="0.00"
+                                placeholder="0"
                                 required
                             />
                         </div>

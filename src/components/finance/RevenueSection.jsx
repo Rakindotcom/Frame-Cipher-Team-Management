@@ -33,7 +33,7 @@ export default function RevenueSection() {
         try {
             const revenueData = {
                 ...formData,
-                amount: parseFloat(formData.amount),
+                amount: parseInt(formData.amount, 10),
                 projectId: formData.projectId || null
             };
 
@@ -263,12 +263,11 @@ export default function RevenueSection() {
                             </label>
                             <input
                                 type="number"
-                                step="0.01"
                                 min="0"
                                 value={formData.amount}
                                 onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
                                 className="input-dark w-full"
-                                placeholder="0.00"
+                                placeholder="0"
                                 required
                             />
                         </div>

@@ -62,7 +62,7 @@ export default function FinanceDashboard() {
         try {
             const revenueData = {
                 ...revenueFormData,
-                amount: parseFloat(revenueFormData.amount),
+                amount: parseInt(revenueFormData.amount, 10),
                 projectId: revenueFormData.projectId || null
             };
             await addRevenue(revenueData);
@@ -86,7 +86,7 @@ export default function FinanceDashboard() {
         try {
             const expenseData = {
                 ...expenseFormData,
-                amount: parseFloat(expenseFormData.amount),
+                amount: parseInt(expenseFormData.amount, 10),
                 projectId: expenseFormData.projectId || null
             };
             await addExpense(expenseData);
@@ -354,12 +354,11 @@ export default function FinanceDashboard() {
                             </label>
                             <input
                                 type="number"
-                                step="0.01"
                                 min="0"
                                 value={revenueFormData.amount}
                                 onChange={(e) => setRevenueFormData({ ...revenueFormData, amount: e.target.value })}
                                 className="input-dark w-full"
-                                placeholder="0.00"
+                                placeholder="0"
                                 required
                             />
                         </div>
@@ -472,12 +471,11 @@ export default function FinanceDashboard() {
                             </label>
                             <input
                                 type="number"
-                                step="0.01"
                                 min="0"
                                 value={expenseFormData.amount}
                                 onChange={(e) => setExpenseFormData({ ...expenseFormData, amount: e.target.value })}
                                 className="input-dark w-full"
-                                placeholder="0.00"
+                                placeholder="0"
                                 required
                             />
                         </div>
