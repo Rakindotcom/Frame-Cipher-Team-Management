@@ -237,9 +237,15 @@ export const getTask = async (taskId) => {
  */
 export const subscribeToProjectTasks = (projectId, callback) => {
     const tasksRef = collection(db, TASKS_COLLECTION);
-    const q = query(tasksRef, where('projectId', '==', projectId), orderBy('createdAt', 'desc'));
+    const q = query(tasksRef, where('projectId', '==', projectId));
     return onSnapshot(q, (snapshot) => {
         const tasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Sort in memory to avoid needing a composite index
+        tasks.sort((a, b) => {
+            const aTime = a.createdAt?.toMillis?.() || 0;
+            const bTime = b.createdAt?.toMillis?.() || 0;
+            return bTime - aTime;
+        });
         callback(tasks);
     });
 };
@@ -266,9 +272,15 @@ export const subscribeToAllTasks = (callback) => {
  */
 export const subscribeToUserTasks = (userId, callback) => {
     const tasksRef = collection(db, TASKS_COLLECTION);
-    const q = query(tasksRef, where('assignedTo', '==', userId), orderBy('createdAt', 'desc'));
+    const q = query(tasksRef, where('assignedTo', '==', userId));
     return onSnapshot(q, (snapshot) => {
         const tasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Sort in memory to avoid needing a composite index
+        tasks.sort((a, b) => {
+            const aTime = a.createdAt?.toMillis?.() || 0;
+            const bTime = b.createdAt?.toMillis?.() || 0;
+            return bTime - aTime;
+        });
         callback(tasks);
     });
 };
@@ -558,9 +570,15 @@ export const subscribeToFinances = (callback) => {
  */
 export const subscribeToRevenues = (callback) => {
     const financesRef = collection(db, FINANCES_COLLECTION);
-    const q = query(financesRef, where('type', '==', 'revenue'), orderBy('createdAt', 'desc'));
+    const q = query(financesRef, where('type', '==', 'revenue'));
     return onSnapshot(q, (snapshot) => {
         const revenues = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Sort in memory to avoid needing a composite index
+        revenues.sort((a, b) => {
+            const aTime = a.createdAt?.toMillis?.() || 0;
+            const bTime = b.createdAt?.toMillis?.() || 0;
+            return bTime - aTime;
+        });
         callback(revenues);
     });
 };
@@ -572,9 +590,15 @@ export const subscribeToRevenues = (callback) => {
  */
 export const subscribeToExpenses = (callback) => {
     const financesRef = collection(db, FINANCES_COLLECTION);
-    const q = query(financesRef, where('type', '==', 'expense'), orderBy('createdAt', 'desc'));
+    const q = query(financesRef, where('type', '==', 'expense'));
     return onSnapshot(q, (snapshot) => {
         const expenses = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Sort in memory to avoid needing a composite index
+        expenses.sort((a, b) => {
+            const aTime = a.createdAt?.toMillis?.() || 0;
+            const bTime = b.createdAt?.toMillis?.() || 0;
+            return bTime - aTime;
+        });
         callback(expenses);
     });
 };
