@@ -78,7 +78,9 @@ export default function TaskDetailPage() {
         }
     };
 
-    const canEdit = isAdmin || userProfile?.id === task?.assignedTo || userProfile?.id === task?.createdBy;
+    const canViewTask = isAdmin || userProfile?.id === task?.assignedTo || userProfile?.id === task?.createdBy;
+    const canUpdateStatus = canViewTask;
+    const canEdit = isAdmin;
     const overdue = task && isOverdue(task.deadline) && task.status !== 'done';
     const assigneeName = task ? getUserName(task.assignedTo) : '';
 
@@ -103,6 +105,25 @@ export default function TaskDetailPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <p className="text-[--text-muted]">Task not found</p>
+                    <Link to="/projects" className="btn-primary inline-block mt-4">
+                        Back to Projects
+                    </Link>
+                </div>
+            </Layout>
+        );
+    }
+
+    if (!canViewTask) {
+        return (
+            <Layout>
+                <div className="glass-card-static p-8 text-center">
+                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c.828 0 1.5-.672 1.5-1.5S12.828 8 12 8s-1.5.672-1.5 1.5S11.172 11 12 11zm0 0v3m0 3h.01M4.93 19h14.14c1.54 0 2.5-1.667 1.73-3L13.73 4c-.77-1.333-2.69-1.333-3.46 0L3.2 16c-.77 1.333.192 3 1.73 3z" />
+                    </svg>
+                    <p className="text-[--text-primary] font-medium">You do not have access to this task</p>
+                    <p className="text-[--text-muted] text-sm mt-2">
+                        Ask an admin to assign it to you if you need access.
+                    </p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
                         Back to Projects
                     </Link>
@@ -194,7 +215,7 @@ export default function TaskDetailPage() {
                             <select
                                 value={task.status}
                                 onChange={(e) => handleStatusChange(e.target.value)}
-                                disabled={!canEdit}
+                                disabled={!canUpdateStatus}
                                 className="select-dark py-2 text-sm"
                             >
                                 {TASK_STATUSES.map((status) => (

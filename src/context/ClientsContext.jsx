@@ -14,10 +14,10 @@ export function ClientsProvider({ children }) {
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { user } = useAuth();
+    const { user, isAdmin } = useAuth();
 
     useEffect(() => {
-        if (!user) {
+        if (!user || !isAdmin) {
             setClients([]);
             setLoading(false);
             return;
@@ -30,7 +30,7 @@ export function ClientsProvider({ children }) {
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, [user, isAdmin]);
 
     const addClient = async (clientData) => {
         try {

@@ -74,7 +74,7 @@ function AppRoutes() {
       <Route
         path="/clients"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute adminOnly>
             <ClientsPage />
           </ProtectedRoute>
         }
