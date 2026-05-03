@@ -105,19 +105,9 @@ export default function FinanceDashboard() {
         }
     };
 
-    // Calculate current period totals (this month)
-    const currentDate = new Date();
-    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-    
-    const currentPeriod = {
-        startDate: startOfMonth.toISOString(),
-        endDate: endOfMonth.toISOString()
-    };
-
-    const totalRevenue = getTotalRevenue(currentPeriod);
-    const totalExpenses = getTotalExpenses(currentPeriod);
-    const netProfit = getNetProfit(currentPeriod);
+    const totalRevenue = getTotalRevenue();
+    const totalExpenses = getTotalExpenses();
+    const netProfit = getNetProfit();
 
     // Get recent transactions (last 5)
     const recentTransactions = [
@@ -176,7 +166,7 @@ export default function FinanceDashboard() {
                             <p className="text-2xl font-bold text-[--accent-green]">
                                 {formatCurrency(totalRevenue)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">This month</p>
+                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
                         <div className="p-3 bg-[--accent-green]/10 rounded-lg">
                             <svg className="w-6 h-6 text-[--accent-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,7 +184,7 @@ export default function FinanceDashboard() {
                             <p className="text-2xl font-bold text-[--accent-red]">
                                 {formatCurrency(totalExpenses)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">This month</p>
+                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
                         <div className="p-3 bg-[--accent-red]/10 rounded-lg">
                             <svg className="w-6 h-6 text-[--accent-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,7 +202,7 @@ export default function FinanceDashboard() {
                             <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
                                 {formatCurrency(netProfit)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">This month</p>
+                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
                         <div className={`p-3 rounded-lg ${netProfit >= 0 ? 'bg-[--accent-green]/10' : 'bg-[--accent-red]/10'}`}>
                             <svg className={`w-6 h-6 ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
