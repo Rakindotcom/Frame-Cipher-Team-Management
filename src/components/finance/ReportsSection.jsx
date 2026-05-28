@@ -3,7 +3,7 @@ import { useFinance } from '../../context/FinanceContext';
 import { useProjects } from '../../context/ProjectsContext';
 
 export default function ReportsSection() {
-    const { revenues, expenses, budgets, getTotalRevenue, getTotalExpenses, getNetProfit } = useFinance();
+    const { revenues, expenses, budgets } = useFinance();
     const { projects } = useProjects();
     const [selectedPeriod, setSelectedPeriod] = useState('thisMonth');
     const [selectedProject, setSelectedProject] = useState('');
@@ -13,14 +13,6 @@ export default function ReportsSection() {
             style: 'currency',
             currency: 'BDT'
         }).format(amount);
-    };
-
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        });
     };
 
     // Calculate date ranges
@@ -37,11 +29,12 @@ export default function ReportsSection() {
                 startDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
                 endDate = new Date(now.getFullYear(), now.getMonth(), 0);
                 break;
-            case 'thisQuarter':
+            case 'thisQuarter': {
                 const quarterStart = Math.floor(now.getMonth() / 3) * 3;
                 startDate = new Date(now.getFullYear(), quarterStart, 1);
                 endDate = new Date(now.getFullYear(), quarterStart + 3, 0);
                 break;
+            }
             case 'thisYear':
                 startDate = new Date(now.getFullYear(), 0, 1);
                 endDate = new Date(now.getFullYear(), 11, 31);
@@ -162,7 +155,7 @@ export default function ReportsSection() {
                     <h2 className="text-xl font-semibold text-[--text-primary]">Financial Reports</h2>
                     <p className="text-[--text-muted] mt-1">Analyze financial performance and trends</p>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="grid w-full grid-cols-1 gap-3 sm:w-auto sm:grid-cols-2">
                     <select
                         value={selectedPeriod}
                         onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -187,10 +180,10 @@ export default function ReportsSection() {
 
             {/* Key Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Total Revenue</p>
-                        <p className="text-2xl font-bold text-[--accent-green]">
+                        <p className="text-xl sm:text-2xl font-bold text-[--accent-green] break-words">
                             {formatCurrency(totalRevenue)}
                         </p>
                         <p className="text-xs text-[--text-muted] mt-1">
@@ -199,10 +192,10 @@ export default function ReportsSection() {
                     </div>
                 </div>
 
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Total Expenses</p>
-                        <p className="text-2xl font-bold text-[--accent-red]">
+                        <p className="text-xl sm:text-2xl font-bold text-[--accent-red] break-words">
                             {formatCurrency(totalExpenses)}
                         </p>
                         <p className="text-xs text-[--text-muted] mt-1">
@@ -211,10 +204,10 @@ export default function ReportsSection() {
                     </div>
                 </div>
 
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Net Profit</p>
-                        <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
+                        <p className={`text-xl sm:text-2xl font-bold break-words ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
                             {formatCurrency(netProfit)}
                         </p>
                         <p className="text-xs text-[--text-muted] mt-1">
@@ -223,10 +216,10 @@ export default function ReportsSection() {
                     </div>
                 </div>
 
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Profit Margin</p>
-                        <p className={`text-2xl font-bold ${profitMargin >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
+                        <p className={`text-xl sm:text-2xl font-bold ${profitMargin >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
                             {profitMargin.toFixed(1)}%
                         </p>
                         <p className="text-xs text-[--text-muted] mt-1">
@@ -237,7 +230,7 @@ export default function ReportsSection() {
             </div>
 
             {/* Monthly Trend */}
-            <div className="glass-card-static">
+            <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <h3 className="text-lg font-semibold text-[--text-primary] mb-6">6-Month Trend</h3>
                 <div className="space-y-4">
                     {monthlyTrend.map((month, index) => {
@@ -247,12 +240,12 @@ export default function ReportsSection() {
                         
                         return (
                             <div key={index} className="space-y-2">
-                                <div className="flex items-center justify-between text-sm">
-                                    <span className="font-medium text-[--text-primary]">{month.month}</span>
-                                    <span className={`font-medium ${month.profit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
-                                        {formatCurrency(month.profit)}
-                                    </span>
-                                </div>
+                                    <div className="flex items-center justify-between gap-3 text-sm">
+                                        <span className="font-medium text-[--text-primary]">{month.month}</span>
+                                        <span className={`text-right font-medium break-words ${month.profit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
+                                            {formatCurrency(month.profit)}
+                                        </span>
+                                    </div>
                                 <div className="space-y-1">
                                     <div className="flex items-center space-x-2">
                                         <span className="text-xs text-[--accent-green] w-16 shrink-0">Revenue</span>
@@ -262,7 +255,7 @@ export default function ReportsSection() {
                                                 style={{ width: `${revenueWidth}%` }}
                                             ></div>
                                         </div>
-                                        <span className="text-xs text-[--text-muted] w-24 text-right shrink-0 truncate">
+                                        <span className="text-xs text-[--text-muted] w-20 sm:w-24 text-right shrink-0 truncate">
                                             {formatCurrency(month.revenue)}
                                         </span>
                                     </div>
@@ -274,7 +267,7 @@ export default function ReportsSection() {
                                                 style={{ width: `${expenseWidth}%` }}
                                             ></div>
                                         </div>
-                                        <span className="text-xs text-[--text-muted] w-24 text-right shrink-0 truncate">
+                                        <span className="text-xs text-[--text-muted] w-20 sm:w-24 text-right shrink-0 truncate">
                                             {formatCurrency(month.expenses)}
                                         </span>
                                     </div>
@@ -288,7 +281,7 @@ export default function ReportsSection() {
             {/* Category Breakdown */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Revenue by Category */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <h3 className="text-lg font-semibold text-[--text-primary] mb-6">Revenue by Category</h3>
                     {Object.keys(revenueByCategory).length === 0 ? (
                         <div className="text-center py-8">
@@ -302,9 +295,9 @@ export default function ReportsSection() {
                                     const percentage = (amount / totalRevenue) * 100;
                                     return (
                                         <div key={category} className="space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm font-medium text-[--text-primary]">{category}</span>
-                                                <span className="text-sm text-[--accent-green]">
+                                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                                <span className="text-sm font-medium text-[--text-primary] break-words">{category}</span>
+                                                <span className="text-sm text-[--accent-green] break-words sm:text-right">
                                                     {formatCurrency(amount)} ({percentage.toFixed(1)}%)
                                                 </span>
                                             </div>
@@ -322,7 +315,7 @@ export default function ReportsSection() {
                 </div>
 
                 {/* Expenses by Category */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <h3 className="text-lg font-semibold text-[--text-primary] mb-6">Expenses by Category</h3>
                     {Object.keys(expensesByCategory).length === 0 ? (
                         <div className="text-center py-8">
@@ -336,9 +329,9 @@ export default function ReportsSection() {
                                     const percentage = (amount / totalExpenses) * 100;
                                     return (
                                         <div key={category} className="space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm font-medium text-[--text-primary]">{category}</span>
-                                                <span className="text-sm text-[--accent-red]">
+                                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                                <span className="text-sm font-medium text-[--text-primary] break-words">{category}</span>
+                                                <span className="text-sm text-[--accent-red] break-words sm:text-right">
                                                     {formatCurrency(amount)} ({percentage.toFixed(1)}%)
                                                 </span>
                                             </div>
@@ -358,7 +351,7 @@ export default function ReportsSection() {
 
             {/* Budget Performance */}
             {budgets.length > 0 && (
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <h3 className="text-lg font-semibold text-[--text-primary] mb-6">Budget Performance</h3>
                     <div className="space-y-4">
                         {budgets.filter(budget => budget.status === 'active').map((budget) => {
@@ -368,8 +361,8 @@ export default function ReportsSection() {
                             return (
                                 <div key={budget.id} className="flex items-center justify-between p-4 bg-[--bg-secondary] rounded-lg">
                                     <div className="flex-1">
-                                        <div className="flex items-center justify-between mb-2">
-                                            <span className="font-medium text-[--text-primary]">{budget.name}</span>
+                                        <div className="flex items-center justify-between gap-3 mb-2">
+                                            <span className="font-medium text-[--text-primary] break-words">{budget.name}</span>
                                             <span className={`text-sm font-medium ${isOverBudget ? 'text-[--accent-red]' : 'text-[--text-primary]'}`}>
                                                 {utilization.toFixed(1)}%
                                             </span>
@@ -380,9 +373,9 @@ export default function ReportsSection() {
                                                 style={{ width: `${Math.min(utilization, 100)}%` }}
                                             ></div>
                                         </div>
-                                        <div className="flex items-center justify-between text-xs text-[--text-muted]">
-                                            <span>{formatCurrency(budget.spentAmount)} spent</span>
-                                            <span>{formatCurrency(budget.allocatedAmount)} allocated</span>
+                                        <div className="grid gap-1 text-xs text-[--text-muted] sm:grid-cols-2">
+                                            <span className="break-words">{formatCurrency(budget.spentAmount)} spent</span>
+                                            <span className="break-words sm:text-right">{formatCurrency(budget.allocatedAmount)} allocated</span>
                                         </div>
                                     </div>
                                 </div>

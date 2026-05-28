@@ -135,7 +135,7 @@ export default function FinanceDashboard() {
     return (
         <div className="space-y-6">
             {/* Quick Actions */}
-            <div className="flex items-center justify-end space-x-3">
+            <div className="grid grid-cols-1 gap-3 sm:flex sm:items-center sm:justify-end">
                 <button
                     onClick={() => setShowRevenueModal(true)}
                     className="btn btn-primary"
@@ -159,16 +159,16 @@ export default function FinanceDashboard() {
             {/* Financial Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Total Revenue Card */}
-                <div className="glass-card-static">
-                    <div className="flex items-center justify-between">
-                        <div>
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0">
                             <p className="text-sm font-medium text-[--text-muted]">Total Revenue</p>
-                            <p className="text-2xl font-bold text-[--accent-green]">
+                            <p className="text-xl sm:text-2xl font-bold text-[--accent-green] break-words">
                                 {formatCurrency(totalRevenue)}
                             </p>
                             <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
-                        <div className="p-3 bg-[--accent-green]/10 rounded-lg">
+                        <div className="hidden sm:block p-3 bg-[--accent-green]/10 rounded-lg shrink-0">
                             <svg className="w-6 h-6 text-[--accent-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                             </svg>
@@ -177,16 +177,16 @@ export default function FinanceDashboard() {
                 </div>
 
                 {/* Total Expenses Card */}
-                <div className="glass-card-static">
-                    <div className="flex items-center justify-between">
-                        <div>
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0">
                             <p className="text-sm font-medium text-[--text-muted]">Total Expenses</p>
-                            <p className="text-2xl font-bold text-[--accent-red]">
+                            <p className="text-xl sm:text-2xl font-bold text-[--accent-red] break-words">
                                 {formatCurrency(totalExpenses)}
                             </p>
                             <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
-                        <div className="p-3 bg-[--accent-red]/10 rounded-lg">
+                        <div className="hidden sm:block p-3 bg-[--accent-red]/10 rounded-lg shrink-0">
                             <svg className="w-6 h-6 text-[--accent-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
@@ -195,16 +195,16 @@ export default function FinanceDashboard() {
                 </div>
 
                 {/* Net Profit Card */}
-                <div className="glass-card-static">
-                    <div className="flex items-center justify-between">
-                        <div>
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0">
                             <p className="text-sm font-medium text-[--text-muted]">Net Profit</p>
-                            <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
+                            <p className={`text-xl sm:text-2xl font-bold break-words ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
                                 {formatCurrency(netProfit)}
                             </p>
                             <p className="text-xs text-[--text-muted] mt-1">All time</p>
                         </div>
-                        <div className={`p-3 rounded-lg ${netProfit >= 0 ? 'bg-[--accent-green]/10' : 'bg-[--accent-red]/10'}`}>
+                        <div className={`hidden sm:block p-3 rounded-lg shrink-0 ${netProfit >= 0 ? 'bg-[--accent-green]/10' : 'bg-[--accent-red]/10'}`}>
                             <svg className={`w-6 h-6 ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
@@ -214,8 +214,8 @@ export default function FinanceDashboard() {
             </div>
 
             {/* Recent Transactions */}
-            <div className="glass-card-static">
-                <div className="flex items-center justify-between mb-4">
+            <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
+                <div className="flex items-center justify-between gap-3 mb-4">
                     <h3 className="text-lg font-semibold text-[--text-primary]">Recent Transactions</h3>
                     <span className="text-sm text-[--text-muted]">Last 5 entries</span>
                 </div>
@@ -233,13 +233,13 @@ export default function FinanceDashboard() {
                 ) : (
                     <div className="space-y-3">
                         {recentTransactions.map((transaction) => (
-                            <div key={`${transaction.type}-${transaction.id}`} className="flex items-center justify-between p-3 bg-[--bg-secondary] rounded-lg">
-                                <div className="flex items-center space-x-3">
+                            <div key={`${transaction.type}-${transaction.id}`} className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-3 bg-[--bg-secondary] rounded-lg min-w-0">
+                                <div className="flex items-start sm:items-center gap-3 min-w-0">
                                     <div className={`p-2 rounded-lg ${
                                         transaction.type === 'revenue' 
                                             ? 'bg-[--accent-green]/10 text-[--accent-green]' 
                                             : 'bg-[--accent-red]/10 text-[--accent-red]'
-                                    }`}>
+                                    } shrink-0`}>
                                         {transaction.type === 'revenue' ? (
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
@@ -250,19 +250,19 @@ export default function FinanceDashboard() {
                                             </svg>
                                         )}
                                     </div>
-                                    <div>
-                                        <p className="font-medium text-[--text-primary]">{transaction.description}</p>
-                                        <p className="text-sm text-[--text-muted]">
+                                    <div className="min-w-0">
+                                        <p className="font-medium text-[--text-primary] break-words">{transaction.description}</p>
+                                        <p className="text-sm text-[--text-muted] break-words">
                                             {transaction.category} • {formatDate(transaction.date)}
                                         </p>
                                     </div>
                                 </div>
-                                <div className="text-right">
+                                <div className="text-left sm:text-right min-w-0">
                                     <p className={`font-semibold ${
                                         transaction.type === 'revenue' 
                                             ? 'text-[--accent-green]' 
                                             : 'text-[--accent-red]'
-                                    }`}>
+                                    } break-words`}>
                                         {transaction.type === 'revenue' ? '+' : '-'}{formatCurrency(transaction.amount)}
                                     </p>
                                 </div>
@@ -274,8 +274,8 @@ export default function FinanceDashboard() {
 
             {/* Budget Overview */}
             {budgets.length > 0 && (
-                <div className="glass-card-static">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
+                    <div className="flex items-center justify-between gap-3 mb-4">
                         <h3 className="text-lg font-semibold text-[--text-primary]">Budget Overview</h3>
                         <span className="text-sm text-[--text-muted]">Active budgets</span>
                     </div>
@@ -287,9 +287,9 @@ export default function FinanceDashboard() {
                             
                             return (
                                 <div key={budget.id} className="space-y-2">
-                                    <div className="flex items-center justify-between">
-                                        <span className="font-medium text-[--text-primary]">{budget.name}</span>
-                                        <span className="text-sm text-[--text-muted]">
+                                    <div className="grid gap-1 sm:grid-cols-2 sm:items-center">
+                                        <span className="font-medium text-[--text-primary] break-words">{budget.name}</span>
+                                        <span className="text-sm text-[--text-muted] break-words sm:text-right">
                                             {formatCurrency(budget.spentAmount)} / {formatCurrency(budget.allocatedAmount)}
                                         </span>
                                     </div>
