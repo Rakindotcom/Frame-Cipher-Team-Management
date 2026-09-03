@@ -118,7 +118,7 @@ export default function Sidebar({ isOpen, onToggle }) {
                     </Link>
                     <button
                         onClick={onToggle}
-                        className="lg:hidden p-1.5 rounded-lg hover:bg-[--bg-tertiary] text-[--text-muted]"
+                        className="lg:hidden p-1.5 rounded-lg hover:bg-(--bg-tertiary) text-(--text-muted)"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -147,11 +147,11 @@ export default function Sidebar({ isOpen, onToggle }) {
                             onClick={() => setProjectsExpanded(!projectsExpanded)}
                             className="sidebar-section-header"
                         >
-                            <span className="sidebar-label text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                            <span className="sidebar-label text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                 Projects
                             </span>
                             <svg
-                                className={`w-4 h-4 text-[--text-muted] transition-transform sidebar-label ${projectsExpanded ? 'rotate-180' : ''}`}
+                                className={`w-4 h-4 text-(--text-muted) transition-transform sidebar-label ${projectsExpanded ? 'rotate-180' : ''}`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -163,7 +163,7 @@ export default function Sidebar({ isOpen, onToggle }) {
                         {projectsExpanded && (
                             <div className="space-y-0.5 mt-1">
                                 {visibleProjects.length === 0 ? (
-                                    <p className="px-3 py-2 text-xs text-[--text-muted] sidebar-label">
+                                    <p className="px-3 py-2 text-xs text-(--text-muted) sidebar-label">
                                         {isAdmin ? 'No projects yet' : 'No assigned projects'}
                                     </p>
                                 ) : (
@@ -173,7 +173,7 @@ export default function Sidebar({ isOpen, onToggle }) {
                                             to={`/projects/${project.id}`}
                                             className={`sidebar-item sidebar-item-nested ${isProjectActive(project.id) ? 'sidebar-item-active' : ''}`}
                                         >
-                                            <div className="w-2 h-2 rounded-full bg-[--accent-cyan] shrink-0"></div>
+                                            <div className="w-2 h-2 rounded-full bg-(--accent-cyan) shrink-0"></div>
                                             <span className="sidebar-label truncate">{project.name}</span>
                                         </Link>
                                     ))
@@ -194,15 +194,15 @@ export default function Sidebar({ isOpen, onToggle }) {
                                 {getInitials(userProfile?.name)}
                             </div>
                             <div className="sidebar-label flex-1 text-left min-w-0">
-                                <div className="text-sm font-medium text-[--text-primary] truncate">
+                                <div className="text-sm font-medium text-(--text-primary) truncate">
                                     {userProfile?.name}
                                 </div>
-                                <div className="text-xs text-[--text-muted] truncate">
+                                <div className="text-xs text-(--text-muted) truncate">
                                     {isAdmin ? 'Admin' : 'Member'}
                                 </div>
                             </div>
                             <svg
-                                className={`w-4 h-4 text-[--text-muted] transition-transform sidebar-label ${showUserMenu ? 'rotate-180' : ''}`}
+                                className={`w-4 h-4 text-(--text-muted) transition-transform sidebar-label ${showUserMenu ? 'rotate-180' : ''}`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -213,13 +213,13 @@ export default function Sidebar({ isOpen, onToggle }) {
 
                         {showUserMenu && (
                             <div className="sidebar-user-menu">
-                                <div className="px-3 py-2 border-b border-[--glass-border]">
-                                    <div className="text-sm font-medium text-[--text-primary]">{userProfile?.name}</div>
-                                    <div className="text-xs text-[--text-muted] break-all">{userProfile?.email}</div>
+                                <div className="px-3 py-2 border-b border-(--glass-border)">
+                                    <div className="text-sm font-medium text-(--text-primary)">{userProfile?.name}</div>
+                                    <div className="text-xs text-(--text-muted) break-all">{userProfile?.email}</div>
                                 </div>
                                 <button
                                     onClick={handleLogout}
-                                    className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-[--accent-red] hover:bg-[--accent-red]/10 transition-colors"
+                                    className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-(--accent-red) hover:bg-(--accent-red)/10 transition-colors"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

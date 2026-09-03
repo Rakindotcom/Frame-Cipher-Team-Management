@@ -2,17 +2,17 @@ import { Droppable, Draggable } from '@hello-pangea/dnd';
 import KanbanCard from './KanbanCard';
 
 const COLUMN_COLORS = {
-    gray: 'border-[--text-muted]/30',
-    cyan: 'border-[--accent-cyan]/30',
-    purple: 'border-[--accent-cyan]/30',
-    green: 'border-[--accent-cyan]/30'
+    gray: 'border-(--text-muted)/30',
+    cyan: 'border-(--accent-cyan)/30',
+    purple: 'border-(--accent-cyan)/30',
+    green: 'border-(--accent-cyan)/30'
 };
 
 const HEADER_COLORS = {
-    gray: 'bg-[--text-muted]/10 text-[--text-muted]',
-    cyan: 'bg-[--accent-cyan]/10 text-[--accent-cyan]',
-    purple: 'bg-[--accent-cyan]/10 text-[--accent-cyan]',
-    green: 'bg-[--accent-cyan]/10 text-[--accent-cyan]'
+    gray: 'bg-(--text-muted)/10 text-(--text-muted)',
+    cyan: 'bg-(--accent-cyan)/10 text-(--accent-cyan)',
+    purple: 'bg-(--accent-cyan)/10 text-(--accent-cyan)',
+    green: 'bg-(--accent-cyan)/10 text-(--accent-cyan)'
 };
 
 export default function KanbanColumn({ column, onAddTask }) {
@@ -26,12 +26,12 @@ export default function KanbanColumn({ column, onAddTask }) {
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${HEADER_COLORS[color]}`}>
                         {title}
                     </span>
-                    <span className="text-xs text-[--text-muted]">{tasks.length}</span>
+                    <span className="text-xs text-(--text-muted)">{tasks.length}</span>
                 </div>
                 {onAddTask && (
                     <button
                         onClick={onAddTask}
-                        className="p-1 rounded hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                        className="p-1 rounded hover:bg-(--bg-tertiary) text-(--text-muted) hover:text-(--text-primary) transition-colors"
                         title="Add task"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export default function KanbanColumn({ column, onAddTask }) {
                     >
                         {tasks.length === 0 ? (
                             <div className="kanban-empty">
-                                <p className="text-xs text-[--text-muted]">No tasks</p>
+                                <p className="text-xs text-(--text-muted)">No tasks</p>
                             </div>
                         ) : (
                             tasks.map((task, index) => (

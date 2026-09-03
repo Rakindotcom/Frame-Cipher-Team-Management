@@ -110,20 +110,20 @@ export default function ClientCard({ client }) {
                     <div className="absolute top-4 right-4">
                         <button
                             onClick={() => setShowMenu(!showMenu)}
-                            className="p-1 rounded-lg hover:bg-[--bg-tertiary] text-[--text-muted] opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="p-1 rounded-lg hover:bg-(--bg-tertiary) text-(--text-muted) opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                             </svg>
                         </button>
                         {showMenu && (
-                            <div className="absolute right-0 top-8 bg-[--bg-tertiary] border border-[--glass-border] rounded-lg shadow-lg py-1 z-10 min-w-[120px]">
+                            <div className="absolute right-0 top-8 bg-(--bg-tertiary) border border-(--glass-border) rounded-lg shadow-lg py-1 z-10 min-w-[120px]">
                                 <button
                                     onClick={() => {
                                         setShowEditModal(true);
                                         setShowMenu(false);
                                     }}
-                                    className="w-full text-left px-3 py-2 text-sm text-[--text-secondary] hover:bg-[--bg-card] hover:text-[--text-primary] transition-colors"
+                                    className="w-full text-left px-3 py-2 text-sm text-(--text-secondary) hover:bg-(--bg-card) hover:text-(--text-primary) transition-colors"
                                 >
                                     Edit
                                 </button>
@@ -132,7 +132,7 @@ export default function ClientCard({ client }) {
                                         handleDelete();
                                         setShowMenu(false);
                                     }}
-                                    className="w-full text-left px-3 py-2 text-sm text-[--accent-red] hover:bg-[--bg-card] transition-colors"
+                                    className="w-full text-left px-3 py-2 text-sm text-(--accent-red) hover:bg-(--bg-card) transition-colors"
                                 >
                                     Delete
                                 </button>
@@ -145,14 +145,14 @@ export default function ClientCard({ client }) {
                 <div className="flex items-start justify-between mb-4 pr-8">
                     <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                            <div className="text-[--text-muted]">
+                            <div className="text-(--text-muted)">
                                 {getIndustryIcon(client.industry)}
                             </div>
-                            <h3 className="text-lg font-semibold text-[--text-primary] group-hover:text-[--accent-cyan] transition-colors">
+                            <h3 className="text-lg font-semibold text-(--text-primary) group-hover:text-(--accent-cyan) transition-colors">
                                 {client.name}
                             </h3>
                         </div>
-                        <p className="text-sm text-[--text-muted]">
+                        <p className="text-sm text-(--text-muted)">
                             {client.industry}
                         </p>
                     </div>
@@ -173,8 +173,8 @@ export default function ClientCard({ client }) {
                             {client.engagementType}
                         </span>
                     </div>
-                    <div className="text-sm text-[--text-secondary] flex items-center gap-2">
-                        <svg className="w-4 h-4 text-[--text-muted]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="text-sm text-(--text-secondary) flex items-center gap-2">
+                        <svg className="w-4 h-4 text-(--text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         {formatDate(client.startDate)} - {formatDate(client.endDate)}
@@ -187,7 +187,7 @@ export default function ClientCard({ client }) {
                         {client.services?.map((service, index) => (
                             <span 
                                 key={index}
-                                className="text-xs px-2 py-1 bg-[--bg-tertiary] text-[--text-muted] rounded-md hover:bg-[--bg-card] transition-colors"
+                                className="text-xs px-2 py-1 bg-(--bg-tertiary) text-(--text-muted) rounded-md hover:bg-(--bg-card) transition-colors"
                             >
                                 {service}
                             </span>
@@ -196,12 +196,12 @@ export default function ClientCard({ client }) {
                 </div>
 
                 {/* Impact */}
-                <div className="border-t border-[--glass-border] pt-4">
+                <div className="border-t border-(--glass-border) pt-4">
                     <div className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-[--accent-cyan] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-(--accent-cyan) mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
-                        <p className="text-sm text-[--text-secondary] italic">
+                        <p className="text-sm text-(--text-secondary) italic">
                             {client.impact}
                         </p>
                     </div>

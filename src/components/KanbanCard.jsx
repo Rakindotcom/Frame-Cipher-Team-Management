@@ -16,14 +16,14 @@ export default function KanbanCard({ task }) {
             {/* Priority & Title */}
             <div className="flex items-start gap-2 mb-1.5">
                 <div className={`priority-dot mt-1.5 shrink-0 ${getPriorityDotClass(task.priority)}`}></div>
-                <h4 className="text-sm font-medium text-[--text-primary] line-clamp-2">
+                <h4 className="text-sm font-medium text-(--text-primary) line-clamp-2">
                     {task.title}
                 </h4>
             </div>
 
             {/* Description Preview */}
             {task.description && (
-                <p className="text-xs text-[--text-muted] line-clamp-2 mb-2 pl-4">
+                <p className="text-xs text-(--text-muted) line-clamp-2 mb-2 pl-4">
                     {task.description}
                 </p>
             )}
@@ -35,14 +35,14 @@ export default function KanbanCard({ task }) {
                     <div className={`avatar avatar-sm bg-linear-to-br ${getAvatarColor(assigneeName)} text-white text-[9px]`}>
                         {getInitials(assigneeName)}
                     </div>
-                    <span className="text-xs text-[--text-muted] truncate max-w-[60px]">
+                    <span className="text-xs text-(--text-muted) truncate max-w-[60px]">
                         {assigneeName?.split(' ')[0]}
                     </span>
                 </div>
 
                 {/* Due Date */}
                 {task.deadline && (
-                    <span className={`text-xs flex items-center space-x-1 ${overdue ? 'text-[--accent-red]' : 'text-[--text-muted]'}`}>
+                    <span className={`text-xs flex items-center space-x-1 ${overdue ? 'text-(--accent-red)' : 'text-(--text-muted)'}`}>
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -53,7 +53,7 @@ export default function KanbanCard({ task }) {
 
             {/* Subtasks / Comments indicator */}
             {(task.comments?.length > 0) && (
-                <div className="flex items-center space-x-2 mt-1.5 pl-4 text-xs text-[--text-muted]">
+                <div className="flex items-center space-x-2 mt-1.5 pl-4 text-xs text-(--text-muted)">
                     {task.comments?.length > 0 && (
                         <span className="flex items-center space-x-1">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

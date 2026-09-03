@@ -41,7 +41,7 @@ export default function ClientsPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h1 className="text-2xl font-bold text-gradient">Clients & Collaborations</h1>
-                        <p className="text-sm text-[--text-muted] mt-1">
+                        <p className="text-sm text-(--text-muted) mt-1">
                             Building lasting partnerships through exceptional delivery
                         </p>
                     </div>
@@ -61,7 +61,7 @@ export default function ClientsPage() {
                     <div className="flex items-center justify-center py-20">
                         <div className="text-center">
                             <div className="spinner spinner-lg mx-auto mb-4"></div>
-                            <p className="text-[--text-muted]">Loading clients...</p>
+                            <p className="text-(--text-muted)">Loading clients...</p>
                         </div>
                     </div>
                 ) : (
@@ -102,7 +102,7 @@ export default function ClientsPage() {
                                     </div>
                                 </div>
                                 <div className="stat-card text-center">
-                                    <div className="stat-value text-2xl text-[--accent-cyan]">
+                                    <div className="stat-value text-2xl text-(--accent-cyan)">
                                         {ongoingCount}
                                     </div>
                                     <div className="stat-label">
@@ -160,8 +160,8 @@ export default function ClientsPage() {
                                 </div>
 
                                 {/* Footer Note */}
-                                <div className="text-center pt-8 border-t border-[--glass-border]">
-                                    <p className="text-sm text-[--text-muted]">
+                                <div className="text-center pt-8 border-t border-(--glass-border)">
+                                    <p className="text-sm text-(--text-muted)">
                                         Building lasting partnerships through exceptional delivery and measurable results.
                                     </p>
                                 </div>

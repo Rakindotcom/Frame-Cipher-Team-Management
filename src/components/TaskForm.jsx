@@ -34,9 +34,9 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
     };
 
     const priorities = [
-        { value: 'low', label: 'Low', color: 'text-[--accent-yellow]' },
-        { value: 'medium', label: 'Medium', color: 'text-[--accent-yellow]' },
-        { value: 'high', label: 'High', color: 'text-[--accent-red]' }
+        { value: 'low', label: 'Low', color: 'text-(--accent-yellow)' },
+        { value: 'medium', label: 'Medium', color: 'text-(--accent-yellow)' },
+        { value: 'high', label: 'High', color: 'text-(--accent-red)' }
     ];
 
     const statuses = [
@@ -51,8 +51,8 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
         <form onSubmit={handleSubmit} className="space-y-5">
             {/* Title */}
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Task Title <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Task Title <span className="text-(--accent-red)">*</span>
                 </label>
                 <input
                     type="text"
@@ -66,7 +66,7 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
 
             {/* Description */}
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
+                <label className="block text-sm font-medium text-(--text-secondary)">
                     Description
                 </label>
                 <textarea
@@ -82,7 +82,7 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Priority */}
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
+                    <label className="block text-sm font-medium text-(--text-secondary)">
                         Priority
                     </label>
                     <select
@@ -98,7 +98,7 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
 
                 {/* Status */}
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
+                    <label className="block text-sm font-medium text-(--text-secondary)">
                         Status
                     </label>
                     <select
@@ -117,7 +117,7 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Assignee */}
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
+                    <label className="block text-sm font-medium text-(--text-secondary)">
                         Assign To
                     </label>
                     <select
@@ -134,7 +134,7 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
 
                 {/* Deadline */}
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
+                    <label className="block text-sm font-medium text-(--text-secondary)">
                         Due Date
                     </label>
                     <input

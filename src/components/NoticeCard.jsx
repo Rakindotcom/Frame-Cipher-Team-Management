@@ -78,14 +78,14 @@ export default function NoticeCard({ notice }) {
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="font-semibold text-[--text-primary] text-base sm:text-lg">
+                                <h3 className="font-semibold text-(--text-primary) text-base sm:text-lg">
                                     {notice.title}
                                 </h3>
                                 <span className={`badge ${priorityColors[notice.priority]}`}>
                                     {notice.priority}
                                 </span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs sm:text-sm text-[--text-muted] mt-1">
+                            <div className="flex items-center gap-2 text-xs sm:text-sm text-(--text-muted) mt-1">
                                 <span>{authorName}</span>
                                 <span>•</span>
                                 <span>{formatDate(notice.createdAt)}</span>
@@ -98,7 +98,7 @@ export default function NoticeCard({ notice }) {
                         <div className="flex items-center gap-1 shrink-0">
                             <button
                                 onClick={() => setShowEditModal(true)}
-                                className="p-2 rounded-lg hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                                className="p-2 rounded-lg hover:bg-(--bg-tertiary) text-(--text-muted) hover:text-(--text-primary) transition-colors"
                                 title="Edit notice"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@ export default function NoticeCard({ notice }) {
                             </button>
                             <button
                                 onClick={handleDelete}
-                                className="p-2 rounded-lg hover:bg-[--accent-red]/10 text-[--text-muted] hover:text-[--accent-red] transition-colors"
+                                className="p-2 rounded-lg hover:bg-(--accent-red)/10 text-(--text-muted) hover:text-(--accent-red) transition-colors"
                                 title="Delete notice"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,15 +119,15 @@ export default function NoticeCard({ notice }) {
                 </div>
 
                 {/* Content */}
-                <div className="text-[--text-secondary] text-sm sm:text-base whitespace-pre-wrap mb-4">
+                <div className="text-(--text-secondary) text-sm sm:text-base whitespace-pre-wrap mb-4">
                     {notice.content}
                 </div>
 
                 {/* Comments Section */}
-                <div className="border-t border-[--glass-border] pt-4">
+                <div className="border-t border-(--glass-border) pt-4">
                     <button
                         onClick={() => setShowComments(!showComments)}
-                        className="flex items-center gap-2 text-sm text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                        className="flex items-center gap-2 text-sm text-(--text-muted) hover:text-(--text-primary) transition-colors"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -171,17 +171,17 @@ export default function NoticeCard({ notice }) {
                                     {comments.map((c) => {
                                         const commenterName = getUserName(c.userId);
                                         return (
-                                            <div key={c.id} className="flex gap-3 p-3 rounded-lg bg-[--bg-primary]">
+                                            <div key={c.id} className="flex gap-3 p-3 rounded-lg bg-(--bg-primary)">
                                                 <div className={`avatar avatar-sm bg-linear-to-br ${getAvatarColor(commenterName)} text-white shrink-0`}>
                                                     {getInitials(commenterName)}
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <div className="flex items-center gap-2 text-xs text-[--text-muted]">
-                                                        <span className="font-medium text-[--text-secondary]">{commenterName}</span>
+                                                    <div className="flex items-center gap-2 text-xs text-(--text-muted)">
+                                                        <span className="font-medium text-(--text-secondary)">{commenterName}</span>
                                                         <span>•</span>
                                                         <span>{formatDate(c.createdAt)}</span>
                                                     </div>
-                                                    <p className="text-sm text-[--text-secondary] mt-1">{c.text}</p>
+                                                    <p className="text-sm text-(--text-secondary) mt-1">{c.text}</p>
                                                 </div>
                                             </div>
                                         );

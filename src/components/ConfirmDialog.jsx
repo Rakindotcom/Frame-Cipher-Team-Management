@@ -47,7 +47,7 @@ export function ConfirmProvider({ children }) {
                 size="sm"
             >
                 <div className="space-y-4">
-                    <p className="text-[--text-secondary]">{confirmState.message}</p>
+                    <p className="text-(--text-secondary)">{confirmState.message}</p>
                     <div className="flex items-center justify-end gap-3">
                         <button
                             onClick={handleCancel}

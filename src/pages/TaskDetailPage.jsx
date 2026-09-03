@@ -90,7 +90,7 @@ export default function TaskDetailPage() {
                 <div className="flex items-center justify-center py-20">
                     <div className="text-center">
                         <div className="spinner spinner-lg mx-auto mb-4"></div>
-                        <p className="text-[--text-muted]">Loading task...</p>
+                        <p className="text-(--text-muted)">Loading task...</p>
                     </div>
                 </div>
             </Layout>
@@ -101,10 +101,10 @@ export default function TaskDetailPage() {
         return (
             <Layout>
                 <div className="glass-card-static p-8 text-center">
-                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 mx-auto text-(--text-muted) opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <p className="text-[--text-muted]">Task not found</p>
+                    <p className="text-(--text-muted)">Task not found</p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
                         Back to Projects
                     </Link>
@@ -117,11 +117,11 @@ export default function TaskDetailPage() {
         return (
             <Layout>
                 <div className="glass-card-static p-8 text-center">
-                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 mx-auto text-(--text-muted) opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c.828 0 1.5-.672 1.5-1.5S12.828 8 12 8s-1.5.672-1.5 1.5S11.172 11 12 11zm0 0v3m0 3h.01M4.93 19h14.14c1.54 0 2.5-1.667 1.73-3L13.73 4c-.77-1.333-2.69-1.333-3.46 0L3.2 16c-.77 1.333.192 3 1.73 3z" />
                     </svg>
-                    <p className="text-[--text-primary] font-medium">You do not have access to this task</p>
-                    <p className="text-[--text-muted] text-sm mt-2">
+                    <p className="text-(--text-primary) font-medium">You do not have access to this task</p>
+                    <p className="text-(--text-muted) text-sm mt-2">
                         Ask an admin to assign it to you if you need access.
                     </p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
@@ -136,8 +136,8 @@ export default function TaskDetailPage() {
         <Layout>
             <div className="max-w-4xl mx-auto space-y-6">
                 {/* Breadcrumb */}
-                <div className="flex items-center text-sm text-[--text-muted]">
-                    <Link to="/projects" className="hover:text-[--accent-cyan] transition-colors flex items-center space-x-1">
+                <div className="flex items-center text-sm text-(--text-muted)">
+                    <Link to="/projects" className="hover:text-(--accent-cyan) transition-colors flex items-center space-x-1">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
@@ -148,7 +148,7 @@ export default function TaskDetailPage() {
                     </svg>
                     {project && (
                         <>
-                            <Link to={`/projects/${project.id}`} className="hover:text-[--accent-cyan] transition-colors">
+                            <Link to={`/projects/${project.id}`} className="hover:text-(--accent-cyan) transition-colors">
                                 {project.name}
                             </Link>
                             <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ export default function TaskDetailPage() {
                             </svg>
                         </>
                     )}
-                    <span className="text-[--text-primary] font-medium line-clamp-1">{task.title}</span>
+                    <span className="text-(--text-primary) font-medium line-clamp-1">{task.title}</span>
                 </div>
 
                 {/* Task Header */}
@@ -175,7 +175,7 @@ export default function TaskDetailPage() {
                                     <div className={`avatar avatar-sm bg-linear-to-br ${getAvatarColor(assigneeName)} text-white text-[10px]`}>
                                         {getInitials(assigneeName)}
                                     </div>
-                                    <span className="text-sm text-[--text-secondary]">
+                                    <span className="text-sm text-(--text-secondary)">
                                         {assigneeName}
                                     </span>
                                 </div>
@@ -208,10 +208,10 @@ export default function TaskDetailPage() {
                     </div>
 
                     {/* Status & Info Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl bg-[--bg-primary]/50 border border-[--glass-border]">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl bg-(--bg-primary)/50 border border-(--glass-border)">
                         {/* Status */}
                         <div>
-                            <label className="block text-xs text-[--text-muted] mb-2">Status</label>
+                            <label className="block text-xs text-(--text-muted) mb-2">Status</label>
                             <select
                                 value={task.status}
                                 onChange={(e) => handleStatusChange(e.target.value)}
@@ -228,9 +228,9 @@ export default function TaskDetailPage() {
 
                         {/* Deadline */}
                         <div>
-                            <label className="block text-xs text-[--text-muted] mb-2">Deadline</label>
+                            <label className="block text-xs text-(--text-muted) mb-2">Deadline</label>
                             {task.deadline ? (
-                                <div className={`text-sm font-medium ${overdue ? 'text-[--accent-red]' : 'text-[--text-primary]'}`}>
+                                <div className={`text-sm font-medium ${overdue ? 'text-(--accent-red)' : 'text-(--text-primary)'}`}>
                                     <div className="flex items-center space-x-1.5">
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -238,48 +238,48 @@ export default function TaskDetailPage() {
                                         <span>{formatDate(task.deadline)}</span>
                                     </div>
                                     {overdue ? (
-                                        <span className="text-xs text-[--accent-red]">Overdue!</span>
+                                        <span className="text-xs text-(--accent-red)">Overdue!</span>
                                     ) : (
-                                        <span className="text-xs text-[--text-muted]">{formatCountdown(task.deadline)}</span>
+                                        <span className="text-xs text-(--text-muted)">{formatCountdown(task.deadline)}</span>
                                     )}
                                 </div>
                             ) : (
-                                <span className="text-sm text-[--text-muted]">No deadline</span>
+                                <span className="text-sm text-(--text-muted)">No deadline</span>
                             )}
                         </div>
 
                         {/* Created */}
                         <div>
-                            <label className="block text-xs text-[--text-muted] mb-2">Created</label>
-                            <span className="text-sm text-[--text-primary]">{formatDate(task.createdAt)}</span>
+                            <label className="block text-xs text-(--text-muted) mb-2">Created</label>
+                            <span className="text-sm text-(--text-primary)">{formatDate(task.createdAt)}</span>
                         </div>
 
                         {/* Project */}
                         <div>
-                            <label className="block text-xs text-[--text-muted] mb-2">Project</label>
+                            <label className="block text-xs text-(--text-muted) mb-2">Project</label>
                             {project ? (
                                 <Link
                                     to={`/projects/${project.id}`}
-                                    className="text-sm text-[--accent-cyan] hover:text-[--accent-cyan] transition-colors"
+                                    className="text-sm text-(--accent-cyan) hover:text-(--accent-cyan) transition-colors"
                                 >
                                     {project.name}
                                 </Link>
                             ) : (
-                                <span className="text-sm text-[--text-muted]">-</span>
+                                <span className="text-sm text-(--text-muted)">-</span>
                             )}
                         </div>
                     </div>
 
                     {/* Description */}
                     {task.description && (
-                        <div className="mt-6 pt-6 border-t border-[--glass-border]">
-                            <h3 className="text-sm font-medium text-[--text-secondary] mb-3 flex items-center space-x-2">
+                        <div className="mt-6 pt-6 border-t border-(--glass-border)">
+                            <h3 className="text-sm font-medium text-(--text-secondary) mb-3 flex items-center space-x-2">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
                                 </svg>
                                 <span>Description</span>
                             </h3>
-                            <p className="text-[--text-secondary] whitespace-pre-wrap leading-relaxed">{task.description}</p>
+                            <p className="text-(--text-secondary) whitespace-pre-wrap leading-relaxed">{task.description}</p>
                         </div>
                     )}
                 </div>

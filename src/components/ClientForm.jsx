@@ -76,8 +76,8 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
-                        Client Name <span className="text-[--accent-red]">*</span>
+                    <label className="block text-sm font-medium text-(--text-secondary)">
+                        Client Name <span className="text-(--accent-red)">*</span>
                     </label>
                     <input
                         type="text"
@@ -90,8 +90,8 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
-                        Industry <span className="text-[--accent-red]">*</span>
+                    <label className="block text-sm font-medium text-(--text-secondary)">
+                        Industry <span className="text-(--accent-red)">*</span>
                     </label>
                     <select
                         value={industry}
@@ -109,8 +109,8 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
-                        Engagement Type <span className="text-[--accent-red]">*</span>
+                    <label className="block text-sm font-medium text-(--text-secondary)">
+                        Engagement Type <span className="text-(--accent-red)">*</span>
                     </label>
                     <select
                         value={engagementType}
@@ -126,8 +126,8 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
-                        Start Date <span className="text-[--accent-red]">*</span>
+                    <label className="block text-sm font-medium text-(--text-secondary)">
+                        Start Date <span className="text-(--accent-red)">*</span>
                     </label>
                     <input
                         type="date"
@@ -139,7 +139,7 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[--text-secondary]">
+                    <label className="block text-sm font-medium text-(--text-secondary)">
                         End Date
                     </label>
                     <input
@@ -149,35 +149,35 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
                         className="input-dark"
                         placeholder="Leave empty if ongoing"
                     />
-                    <p className="text-xs text-[--text-muted]">Leave empty if ongoing</p>
+                    <p className="text-xs text-(--text-muted)">Leave empty if ongoing</p>
                 </div>
             </div>
 
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Services Delivered <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Services Delivered <span className="text-(--accent-red)">*</span>
                 </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-3 bg-[--bg-tertiary] rounded-lg border border-[--glass-border]">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-3 bg-(--bg-tertiary) rounded-lg border border-(--glass-border)">
                     {SERVICES.map(service => (
                         <label key={service} className="flex items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
                                 checked={services.includes(service)}
                                 onChange={() => handleServiceToggle(service)}
-                                className="rounded border-[--glass-border] bg-[--bg-primary] text-[--accent-cyan] focus:ring-[--accent-cyan] focus:ring-offset-0"
+                                className="rounded border-(--glass-border) bg-(--bg-primary) text-(--accent-cyan) focus:ring-(--accent-cyan) focus:ring-offset-0"
                             />
-                            <span className="text-sm text-[--text-secondary]">{service}</span>
+                            <span className="text-sm text-(--text-secondary)">{service}</span>
                         </label>
                     ))}
                 </div>
                 {services.length === 0 && (
-                    <p className="text-xs text-[--accent-red]">Please select at least one service</p>
+                    <p className="text-xs text-(--accent-red)">Please select at least one service</p>
                 )}
             </div>
 
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Impact Summary <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Impact Summary <span className="text-(--accent-red)">*</span>
                 </label>
                 <textarea
                     value={impact}
@@ -187,7 +187,7 @@ export default function ClientForm({ initialData, onSubmit, onCancel }) {
                     rows={3}
                     required
                 />
-                <p className="text-xs text-[--text-muted]">
+                <p className="text-xs text-(--text-muted)">
                     Brief, result-oriented description of the project impact
                 </p>
             </div>

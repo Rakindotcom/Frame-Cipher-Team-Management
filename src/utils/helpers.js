@@ -113,10 +113,10 @@ export const formatCountdown = (deadline) => {
  */
 export const getPriorityColor = (priority) => {
     switch (priority) {
-        case 'high': return 'bg-[--accent-red]/15 text-[--accent-red] border border-[--accent-red]/30';
-        case 'medium': return 'bg-[--accent-yellow]/15 text-[--accent-yellow] border border-[--accent-yellow]/30';
-        case 'low': return 'bg-[--accent-yellow]/15 text-[--accent-yellow] border border-[--accent-yellow]/30';
-        default: return 'bg-[--bg-tertiary] text-[--text-muted]';
+        case 'high': return 'bg-(--accent-red)/15 text-(--accent-red) border border-(--accent-red)/30';
+        case 'medium': return 'bg-(--accent-yellow)/15 text-(--accent-yellow) border border-(--accent-yellow)/30';
+        case 'low': return 'bg-(--accent-yellow)/15 text-(--accent-yellow) border border-(--accent-yellow)/30';
+        default: return 'bg-(--bg-tertiary) text-(--text-muted)';
     }
 };
 
@@ -127,12 +127,12 @@ export const getPriorityColor = (priority) => {
  */
 export const getStatusColor = (status) => {
     switch (status) {
-        case 'done': return 'bg-[--accent-yellow]/15 text-[--accent-yellow] border border-[--accent-yellow]/30';
-        case 'in-progress': return 'bg-[--accent-cyan]/15 text-[--accent-cyan] border border-[--accent-cyan]/30';
-        case 'review': return 'bg-[--accent-purple]/15 text-[--accent-purple] border border-[--accent-purple]/30';
-        case 'need-fixing': return 'bg-[--accent-yellow]/15 text-[--accent-yellow] border border-[--accent-yellow]/30';
-        case 'todo': return 'bg-[--bg-tertiary] text-[--text-muted] border border-[--glass-border]';
-        default: return 'bg-[--bg-tertiary] text-[--text-muted]';
+        case 'done': return 'bg-(--accent-yellow)/15 text-(--accent-yellow) border border-(--accent-yellow)/30';
+        case 'in-progress': return 'bg-(--accent-cyan)/15 text-(--accent-cyan) border border-(--accent-cyan)/30';
+        case 'review': return 'bg-(--accent-purple)/15 text-(--accent-purple) border border-(--accent-purple)/30';
+        case 'need-fixing': return 'bg-(--accent-yellow)/15 text-(--accent-yellow) border border-(--accent-yellow)/30';
+        case 'todo': return 'bg-(--bg-tertiary) text-(--text-muted) border border-(--glass-border)';
+        default: return 'bg-(--bg-tertiary) text-(--text-muted)';
     }
 };
 
@@ -187,11 +187,11 @@ export const getAvatarColor = (name) => {
     if (!name) return 'from-gray-500 to-gray-600';
 
     const colors = [
-        'from-[--accent-cyan] to-blue-500',
-        'from-[--accent-purple] to-purple-600',
-        'from-[--accent-pink] to-rose-500',
-        'from-[--accent-yellow] to-yellow-500',
-        'from-[--accent-yellow] to-orange-500',
+        'from-(--accent-cyan) to-blue-500',
+        'from-(--accent-purple) to-purple-600',
+        'from-(--accent-pink) to-rose-500',
+        'from-(--accent-yellow) to-yellow-500',
+        'from-(--accent-yellow) to-orange-500',
         'from-blue-500 to-indigo-600',
         'from-teal-500 to-cyan-500',
         'from-rose-500 to-pink-600'
@@ -211,7 +211,7 @@ export const getPriorityDotClass = (priority) => {
         case 'high': return 'priority-dot-high';
         case 'medium': return 'priority-dot-medium';
         case 'low': return 'priority-dot-low';
-        default: return 'bg-[--text-muted]';
+        default: return 'bg-(--text-muted)';
     }
 };
 

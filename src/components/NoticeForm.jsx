@@ -35,8 +35,8 @@ export default function NoticeForm({ initialData, onCancel, onSuccess }) {
         <form onSubmit={handleSubmit} className="space-y-5">
             {/* Title */}
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Title <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Title <span className="text-(--accent-red)">*</span>
                 </label>
                 <input
                     type="text"
@@ -50,8 +50,8 @@ export default function NoticeForm({ initialData, onCancel, onSuccess }) {
 
             {/* Content */}
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Content <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Content <span className="text-(--accent-red)">*</span>
                 </label>
                 <textarea
                     value={content}
@@ -65,7 +65,7 @@ export default function NoticeForm({ initialData, onCancel, onSuccess }) {
 
             {/* Priority */}
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
+                <label className="block text-sm font-medium text-(--text-secondary)">
                     Priority
                 </label>
                 <select

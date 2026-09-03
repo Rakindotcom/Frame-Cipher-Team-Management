@@ -76,7 +76,7 @@ export default function Navbar() {
                             <img
                                 src="/logo.png"
                                 alt="Frame Cipher"
-                                className="w-10 shadow-lg group-hover:shadow-[--shadow-glow] transition-all duration-300"
+                                className="w-10 shadow-lg group-hover:shadow-(--shadow-glow) transition-all duration-300"
                             />
                         </Link>
 
@@ -86,8 +86,8 @@ export default function Navbar() {
                                     key={link.to}
                                     to={link.to}
                                     className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isActive(link.to)
-                                        ? 'bg-linear-to-r from-[--accent-cyan]/20 to-[--accent-cyan]/20 text-[--accent-cyan] border border-[--accent-cyan]/30'
-                                        : 'text-[--text-secondary] hover:text-[--text-primary] hover:bg-[--bg-tertiary]'
+                                        ? 'bg-linear-to-r from-(--accent-cyan)/20 to-(--accent-cyan)/20 text-(--accent-cyan) border border-(--accent-cyan)/30'
+                                        : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-tertiary)'
                                         }`}
                                 >
                                     {link.icon}
@@ -102,21 +102,21 @@ export default function Navbar() {
                         <div className="relative">
                             <button
                                 onClick={() => setShowUserMenu(!showUserMenu)}
-                                className="flex items-center space-x-3 px-3 py-1.5 rounded-lg hover:bg-[--bg-tertiary] transition-all duration-200"
+                                className="flex items-center space-x-3 px-3 py-1.5 rounded-lg hover:bg-(--bg-tertiary) transition-all duration-200"
                             >
-                                <div className="avatar avatar-md bg-linear-to-br from-[--accent-cyan] to-[--accent-cyan] text-white">
+                                <div className="avatar avatar-md bg-linear-to-br from-(--accent-cyan) to-(--accent-cyan) text-white">
                                     {getInitials(userProfile?.name)}
                                 </div>
                                 <div className="hidden md:block text-left">
-                                    <div className="text-sm font-medium text-[--text-primary]">
+                                    <div className="text-sm font-medium text-(--text-primary)">
                                         {userProfile?.name}
                                     </div>
                                     {isAdmin && (
-                                        <div className="text-xs text-[--accent-cyan]">Admin</div>
+                                        <div className="text-xs text-(--accent-cyan)">Admin</div>
                                     )}
                                 </div>
                                 <svg
-                                    className={`w-4 h-4 text-[--text-muted] transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
+                                    className={`w-4 h-4 text-(--text-muted) transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -133,13 +133,13 @@ export default function Navbar() {
                                         onClick={() => setShowUserMenu(false)}
                                     ></div>
                                     <div className="absolute right-0 mt-2 w-48 glass-card-static p-2 z-20 animate-fade-in-down">
-                                        <div className="px-3 py-2 border-b border-[--glass-border] mb-2">
-                                            <div className="text-sm font-medium text-[--text-primary]">{userProfile?.name}</div>
-                                            <div className="text-xs text-[--text-muted]">{userProfile?.email}</div>
+                                        <div className="px-3 py-2 border-b border-(--glass-border) mb-2">
+                                            <div className="text-sm font-medium text-(--text-primary)">{userProfile?.name}</div>
+                                            <div className="text-xs text-(--text-muted)">{userProfile?.email}</div>
                                         </div>
                                         <button
                                             onClick={handleLogout}
-                                            className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-[--accent-red] hover:bg-[--accent-red]/10 rounded-lg transition-colors"
+                                            className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-(--accent-red) hover:bg-(--accent-red)/10 rounded-lg transition-colors"
                                         >
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

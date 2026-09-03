@@ -30,7 +30,7 @@ export default function ProjectsPage() {
                 <div className="flex items-center justify-center py-20">
                     <div className="text-center">
                         <div className="spinner spinner-lg mx-auto mb-4"></div>
-                        <p className="text-[--text-muted]">Loading projects...</p>
+                        <p className="text-(--text-muted)">Loading projects...</p>
                     </div>
                 </div>
             </Layout>
@@ -43,10 +43,10 @@ export default function ProjectsPage() {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold text-[--text-primary]">
+                        <h1 className="text-2xl font-bold text-(--text-primary)">
                             Projects
                         </h1>
-                        <p className="text-[--text-muted] mt-1">
+                        <p className="text-(--text-muted) mt-1">
                             {visibleProjects.length} project{visibleProjects.length !== 1 ? 's' : ''} total
                         </p>
                     </div>

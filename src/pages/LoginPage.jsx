@@ -47,9 +47,9 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
             {/* Animated Background Orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute w-96 h-96 -top-48 -left-48 bg-linear-to-br from-[--accent-cyan]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-                <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-linear-to-br from-[--accent-cyan]/20 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute w-64 h-64 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-linear-to-br from-[--accent-cyan]/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute w-96 h-96 -top-48 -left-48 bg-linear-to-br from-(--accent-cyan)/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+                <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-linear-to-br from-(--accent-cyan)/20 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute w-64 h-64 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-linear-to-br from-(--accent-cyan)/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
             </div>
 
             <div className="max-w-sm w-full relative z-10">
@@ -61,24 +61,24 @@ export default function LoginPage() {
                         className="w-32 mx-auto shadow-lg mb-4"
                     />
                     <h1 className="text-3xl font-bold text-gradient">Frame Cipher</h1>
-                    <p className="text-[--text-muted] mt-2">Secure Project Framework</p>
+                    <p className="text-(--text-muted) mt-2">Secure Project Framework</p>
                 </div>
 
                 {/* Login Card */}
                 <div className="glass-card-static p-6 animate-fade-in-up">
-                    <h2 className="text-xl font-semibold text-[--text-primary] mb-6 text-center">
+                    <h2 className="text-xl font-semibold text-(--text-primary) mb-6 text-center">
                         Welcome Back
                     </h2>
 
                     {error && (
-                        <div className="mb-4 p-3 bg-[--accent-red]/10 border border-[--accent-red]/30 rounded-lg">
-                            <p className="text-[--accent-red] text-sm text-center">{error}</p>
+                        <div className="mb-4 p-3 bg-(--accent-red)/10 border border-(--accent-red)/30 rounded-lg">
+                            <p className="text-(--accent-red) text-sm text-center">{error}</p>
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
-                            <label className="block text-sm font-medium text-[--text-secondary]">
+                            <label className="block text-sm font-medium text-(--text-secondary)">
                                 Email Address
                             </label>
                             <input
@@ -92,7 +92,7 @@ export default function LoginPage() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-medium text-[--text-secondary]">
+                            <label className="block text-sm font-medium text-(--text-secondary)">
                                 Password
                             </label>
                             <div className="relative">
@@ -108,7 +108,7 @@ export default function LoginPage() {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-(--text-muted) hover:text-(--text-primary) transition-colors"
                                 >
                                     {showPassword ? (
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,13 +140,13 @@ export default function LoginPage() {
                         </button>
                     </form>
 
-                    <p className="mt-6 text-center text-[--text-muted] text-xs">
+                    <p className="mt-6 text-center text-(--text-muted) text-xs">
                         Contact your Frame Cipher admin for access
                     </p>
                 </div>
 
                 {/* Footer */}
-                <p className="text-center text-[--text-muted] text-xs mt-6 animate-fade-in">
+                <p className="text-center text-(--text-muted) text-xs mt-6 animate-fade-in">
                     Secure • Encrypted • Reliable
                 </p>
             </div>

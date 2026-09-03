@@ -59,7 +59,7 @@ export default function UserManagement() {
             <div className="flex items-center justify-center py-12">
                 <div className="text-center">
                     <div className="spinner spinner-lg mx-auto mb-4"></div>
-                    <p className="text-[--text-muted]">Loading users...</p>
+                    <p className="text-(--text-muted)">Loading users...</p>
                 </div>
             </div>
         );
@@ -102,29 +102,29 @@ export default function UserManagement() {
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
-                            <tr className="border-b border-[--glass-border]">
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                            <tr className="border-b border-(--glass-border)">
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                     User
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                     Email
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                     Role
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                     Joined
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-[--text-muted] uppercase tracking-wider">
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-(--text-muted) uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-[--glass-border]">
+                        <tbody className="divide-y divide-(--glass-border)">
                             {users.map((user, index) => (
                                 <tr
                                     key={user.id}
-                                    className="hover:bg-[--bg-tertiary]/30 transition-colors animate-fade-in"
+                                    className="hover:bg-(--bg-tertiary)/30 transition-colors animate-fade-in"
                                     style={{ animationDelay: `${index * 50}ms` }}
                                 >
                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -133,8 +133,8 @@ export default function UserManagement() {
                                                 {getInitials(user.name)}
                                             </div>
                                             <div>
-                                                <div className="text-sm font-medium text-[--text-primary]">
-                                                    {user.name || <span className="text-[--accent-yellow]">No name set</span>}
+                                                <div className="text-sm font-medium text-(--text-primary)">
+                                                    {user.name || <span className="text-(--accent-yellow)">No name set</span>}
                                                     {user.id === userProfile?.id && (
                                                         <span className="ml-2 badge badge-cyan text-[10px]">you</span>
                                                     )}
@@ -143,7 +143,7 @@ export default function UserManagement() {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="text-sm text-[--text-muted]">{user.email}</span>
+                                        <span className="text-sm text-(--text-muted)">{user.email}</span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <select
@@ -165,14 +165,14 @@ export default function UserManagement() {
                                         )}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="text-sm text-[--text-muted]">
+                                        <span className="text-sm text-(--text-muted)">
                                             {formatDate(user.createdAt)}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <button
                                             onClick={() => handleEditName(user)}
-                                            className="text-[--accent-cyan] hover:text-[--accent-cyan] text-sm font-medium transition-colors"
+                                            className="text-(--accent-cyan) hover:text-(--accent-cyan) text-sm font-medium transition-colors"
                                         >
                                             Edit Name
                                         </button>
@@ -193,8 +193,8 @@ export default function UserManagement() {
             >
                 <div className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-[--text-secondary] mb-2">
-                            Full Name <span className="text-[--accent-red]">*</span>
+                        <label className="block text-sm font-medium text-(--text-secondary) mb-2">
+                            Full Name <span className="text-(--accent-red)">*</span>
                         </label>
                         <input
                             type="text"

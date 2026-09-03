@@ -5,12 +5,12 @@ import { useProjects } from '../../hooks/useProjects';
 import { useToast } from '../../hooks/useToast';
 
 export default function FinanceDashboard() {
-    const { 
-        revenues, 
-        expenses, 
-        budgets, 
-        getTotalRevenue, 
-        getTotalExpenses, 
+    const {
+        revenues,
+        expenses,
+        budgets,
+        getTotalRevenue,
+        getTotalExpenses,
         getNetProfit,
         addRevenue,
         addExpense
@@ -163,14 +163,14 @@ export default function FinanceDashboard() {
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-[--text-muted]">Total Revenue</p>
-                            <p className="text-xl sm:text-2xl font-bold text-[--accent-green] break-words">
+                            <p className="text-sm font-medium text-(--text-muted)">Total Revenue</p>
+                            <p className="text-xl sm:text-2xl font-bold text-(--accent-green) wrap-break-word">
                                 {formatCurrency(totalRevenue)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
+                            <p className="text-xs text-(--text-muted) mt-1">All time</p>
                         </div>
-                        <div className="hidden sm:block p-3 bg-[--accent-green]/10 rounded-lg shrink-0">
-                            <svg className="w-6 h-6 text-[--accent-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="hidden sm:block p-3 bg-(--accent-green)/10 rounded-lg shrink-0">
+                            <svg className="w-6 h-6 text-(--accent-green)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                             </svg>
                         </div>
@@ -181,14 +181,14 @@ export default function FinanceDashboard() {
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-[--text-muted]">Total Expenses</p>
-                            <p className="text-xl sm:text-2xl font-bold text-[--accent-red] break-words">
+                            <p className="text-sm font-medium text-(--text-muted)">Total Expenses</p>
+                            <p className="text-xl sm:text-2xl font-bold text-(--accent-red) wrap-break-word">
                                 {formatCurrency(totalExpenses)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
+                            <p className="text-xs text-(--text-muted) mt-1">All time</p>
                         </div>
-                        <div className="hidden sm:block p-3 bg-[--accent-red]/10 rounded-lg shrink-0">
-                            <svg className="w-6 h-6 text-[--accent-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="hidden sm:block p-3 bg-(--accent-red)/10 rounded-lg shrink-0">
+                            <svg className="w-6 h-6 text-(--accent-red)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
@@ -199,14 +199,14 @@ export default function FinanceDashboard() {
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-[--text-muted]">Net Profit</p>
-                            <p className={`text-xl sm:text-2xl font-bold break-words ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`}>
+                            <p className="text-sm font-medium text-(--text-muted)">Net Profit</p>
+                            <p className={`text-xl sm:text-2xl font-bold wrap-break-word ${netProfit >= 0 ? 'text-(--accent-green)' : 'text-(--accent-red)'}`}>
                                 {formatCurrency(netProfit)}
                             </p>
-                            <p className="text-xs text-[--text-muted] mt-1">All time</p>
+                            <p className="text-xs text-(--text-muted) mt-1">All time</p>
                         </div>
-                        <div className={`hidden sm:block p-3 rounded-lg shrink-0 ${netProfit >= 0 ? 'bg-[--accent-green]/10' : 'bg-[--accent-red]/10'}`}>
-                            <svg className={`w-6 h-6 ${netProfit >= 0 ? 'text-[--accent-green]' : 'text-[--accent-red]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className={`hidden sm:block p-3 rounded-lg shrink-0 ${netProfit >= 0 ? 'bg-(--accent-green)/10' : 'bg-(--accent-red)/10'}`}>
+                            <svg className={`w-6 h-6 ${netProfit >= 0 ? 'text-(--accent-green)' : 'text-(--accent-red)'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
@@ -217,29 +217,29 @@ export default function FinanceDashboard() {
             {/* Recent Transactions */}
             <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <div className="flex items-center justify-between gap-3 mb-4">
-                    <h3 className="text-lg font-semibold text-[--text-primary]">Recent Transactions</h3>
-                    <span className="text-sm text-[--text-muted]">Last 5 entries</span>
+                    <h3 className="text-lg font-semibold text-(--text-primary)">Recent Transactions</h3>
+                    <span className="text-sm text-(--text-muted)">Last 5 entries</span>
                 </div>
 
                 {recentTransactions.length === 0 ? (
                     <div className="text-center py-8">
-                        <svg className="w-12 h-12 text-[--text-muted] mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-12 h-12 text-(--text-muted) mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
-                        <p className="text-[--text-muted]">No transactions yet</p>
-                        <p className="text-sm text-[--text-muted] mt-1">
+                        <p className="text-(--text-muted)">No transactions yet</p>
+                        <p className="text-sm text-(--text-muted) mt-1">
                             Start by adding revenue or expense entries
                         </p>
                     </div>
                 ) : (
                     <div className="space-y-3">
                         {recentTransactions.map((transaction) => (
-                            <div key={`${transaction.type}-${transaction.id}`} className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-3 bg-[--bg-secondary] rounded-lg min-w-0">
+                            <div key={`${transaction.type}-${transaction.id}`} className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-3 bg-(--bg-secondary) rounded-lg min-w-0">
                                 <div className="flex items-start sm:items-center gap-3 min-w-0">
                                     <div className={`p-2 rounded-lg ${
-                                        transaction.type === 'revenue' 
-                                            ? 'bg-[--accent-green]/10 text-[--accent-green]' 
-                                            : 'bg-[--accent-red]/10 text-[--accent-red]'
+                                        transaction.type === 'revenue'
+                                            ? 'bg-(--accent-green)/10 text-(--accent-green)'
+                                            : 'bg-(--accent-red)/10 text-(--accent-red)'
                                     } shrink-0`}>
                                         {transaction.type === 'revenue' ? (
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,18 +252,18 @@ export default function FinanceDashboard() {
                                         )}
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="font-medium text-[--text-primary] break-words">{transaction.description}</p>
-                                        <p className="text-sm text-[--text-muted] break-words">
+                                        <p className="font-medium text-(--text-primary) wrap-break-word">{transaction.description}</p>
+                                        <p className="text-sm text-(--text-muted) wrap-break-word">
                                             {transaction.category} • {formatDate(transaction.date)}
                                         </p>
                                     </div>
                                 </div>
                                 <div className="text-left sm:text-right min-w-0">
                                     <p className={`font-semibold ${
-                                        transaction.type === 'revenue' 
-                                            ? 'text-[--accent-green]' 
-                                            : 'text-[--accent-red]'
-                                    } break-words`}>
+                                        transaction.type === 'revenue'
+                                            ? 'text-(--accent-green)'
+                                            : 'text-(--accent-red)'
+                                    } wrap-break-word`}>
                                         {transaction.type === 'revenue' ? '+' : '-'}{formatCurrency(transaction.amount)}
                                     </p>
                                 </div>
@@ -277,37 +277,37 @@ export default function FinanceDashboard() {
             {budgets.length > 0 && (
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-3 mb-4">
-                        <h3 className="text-lg font-semibold text-[--text-primary]">Budget Overview</h3>
-                        <span className="text-sm text-[--text-muted]">Active budgets</span>
+                        <h3 className="text-lg font-semibold text-(--text-primary)">Budget Overview</h3>
+                        <span className="text-sm text-(--text-muted)">Active budgets</span>
                     </div>
 
                     <div className="space-y-4">
                         {budgets.filter(budget => budget.status === 'active').slice(0, 3).map((budget) => {
                             const utilization = (budget.spentAmount / budget.allocatedAmount) * 100;
                             const isOverBudget = utilization > 100;
-                            
+
                             return (
                                 <div key={budget.id} className="space-y-2">
                                     <div className="grid gap-1 sm:grid-cols-2 sm:items-center">
-                                        <span className="font-medium text-[--text-primary] break-words">{budget.name}</span>
-                                        <span className="text-sm text-[--text-muted] break-words sm:text-right">
+                                        <span className="font-medium text-(--text-primary) wrap-break-word">{budget.name}</span>
+                                        <span className="text-sm text-(--text-muted) wrap-break-word sm:text-right">
                                             {formatCurrency(budget.spentAmount)} / {formatCurrency(budget.allocatedAmount)}
                                         </span>
                                     </div>
-                                    <div className="w-full bg-[--bg-tertiary] rounded-full h-2">
+                                    <div className="w-full bg-(--bg-tertiary) rounded-full h-2">
                                         <div
                                             className={`h-2 rounded-full transition-all ${
-                                                isOverBudget ? 'bg-[--accent-red]' : 'bg-[--accent-green]'
+                                                isOverBudget ? 'bg-(--accent-red)' : 'bg-(--accent-green)'
                                             }`}
                                             style={{ width: `${Math.min(utilization, 100)}%` }}
                                         ></div>
                                     </div>
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className={`font-medium ${isOverBudget ? 'text-[--accent-red]' : 'text-[--text-muted]'}`}>
+                                        <span className={`font-medium ${isOverBudget ? 'text-(--accent-red)' : 'text-(--text-muted)'}`}>
                                             {utilization.toFixed(1)}% used
                                         </span>
                                         {isOverBudget && (
-                                            <span className="text-[--accent-red] font-medium">Over budget!</span>
+                                            <span className="text-(--accent-red) font-medium">Over budget!</span>
                                         )}
                                     </div>
                                 </div>
@@ -325,7 +325,7 @@ export default function FinanceDashboard() {
             >
                 <form onSubmit={handleRevenueSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Description *
                         </label>
                         <input
@@ -340,7 +340,7 @@ export default function FinanceDashboard() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Amount *
                             </label>
                             <input
@@ -355,7 +355,7 @@ export default function FinanceDashboard() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Date *
                             </label>
                             <input
@@ -370,7 +370,7 @@ export default function FinanceDashboard() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Category *
                             </label>
                             <select
@@ -387,7 +387,7 @@ export default function FinanceDashboard() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Project (Optional)
                             </label>
                             <select
@@ -404,7 +404,7 @@ export default function FinanceDashboard() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Notes (Optional)
                         </label>
                         <textarea
@@ -442,7 +442,7 @@ export default function FinanceDashboard() {
             >
                 <form onSubmit={handleExpenseSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Description *
                         </label>
                         <input
@@ -457,7 +457,7 @@ export default function FinanceDashboard() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Amount *
                             </label>
                             <input
@@ -472,7 +472,7 @@ export default function FinanceDashboard() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Date *
                             </label>
                             <input
@@ -487,7 +487,7 @@ export default function FinanceDashboard() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Category *
                             </label>
                             <select
@@ -504,7 +504,7 @@ export default function FinanceDashboard() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Project (Optional)
                             </label>
                             <select
@@ -521,7 +521,7 @@ export default function FinanceDashboard() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Notes (Optional)
                         </label>
                         <textarea

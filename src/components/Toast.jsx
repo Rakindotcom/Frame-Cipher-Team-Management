@@ -53,10 +53,10 @@ function Toast({ message, type, onClose }) {
     };
 
     const colors = {
-        success: 'bg-[--accent-yellow]/20 border-[--accent-yellow]/30 text-[--accent-yellow]',
-        error: 'bg-[--accent-red]/20 border-[--accent-red]/30 text-[--accent-red]',
-        warning: 'bg-[--accent-yellow]/20 border-[--accent-yellow]/30 text-[--accent-yellow]',
-        info: 'bg-[--accent-cyan]/20 border-[--accent-cyan]/30 text-[--accent-cyan]'
+        success: 'bg-(--accent-yellow)/20 border-(--accent-yellow)/30 text-(--accent-yellow)',
+        error: 'bg-(--accent-red)/20 border-(--accent-red)/30 text-(--accent-red)',
+        warning: 'bg-(--accent-yellow)/20 border-(--accent-yellow)/30 text-(--accent-yellow)',
+        info: 'bg-(--accent-cyan)/20 border-(--accent-cyan)/30 text-(--accent-cyan)'
     };
 
     return (
@@ -65,7 +65,7 @@ function Toast({ message, type, onClose }) {
                 <div className="shrink-0">
                     {icons[type]}
                 </div>
-                <p className="text-sm font-medium text-[--text-primary] flex-1">{message}</p>
+                <p className="text-sm font-medium text-(--text-primary) flex-1">{message}</p>
                 <button
                     onClick={onClose}
                     className="shrink-0 p-1 rounded hover:bg-black/10 transition-colors"

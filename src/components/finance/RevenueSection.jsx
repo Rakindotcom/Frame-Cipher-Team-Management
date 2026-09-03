@@ -110,8 +110,8 @@ export default function RevenueSection() {
             {/* Header with Add Button */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
-                    <h2 className="text-xl font-semibold text-[--text-primary]">Revenue Management</h2>
-                    <p className="text-[--text-muted] mt-1">Track and manage revenue entries</p>
+                    <h2 className="text-xl font-semibold text-(--text-primary)">Revenue Management</h2>
+                    <p className="text-(--text-muted) mt-1">Track and manage revenue entries</p>
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
@@ -128,16 +128,16 @@ export default function RevenueSection() {
             <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <div className="flex items-center justify-between gap-4">
                     <div className="min-w-0">
-                        <p className="text-sm font-medium text-[--text-muted]">Total Revenue</p>
-                        <p className="text-2xl sm:text-3xl font-bold text-[--accent-green] break-words">
+                        <p className="text-sm font-medium text-(--text-muted)">Total Revenue</p>
+                        <p className="text-2xl sm:text-3xl font-bold text-(--accent-green) wrap-break-word">
                             {formatCurrency(totalRevenue)}
                         </p>
-                        <p className="text-sm text-[--text-muted] mt-1">
+                        <p className="text-sm text-(--text-muted) mt-1">
                             {revenues.length} {revenues.length === 1 ? 'entry' : 'entries'}
                         </p>
                     </div>
-                    <div className="hidden sm:block p-4 bg-[--accent-green]/10 rounded-lg shrink-0">
-                        <svg className="w-8 h-8 text-[--accent-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="hidden sm:block p-4 bg-(--accent-green)/10 rounded-lg shrink-0">
+                        <svg className="w-8 h-8 text-(--accent-green)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
                     </div>
@@ -147,21 +147,21 @@ export default function RevenueSection() {
             {/* Revenue List */}
             <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-[--text-primary]">Revenue Entries</h3>
+                    <h3 className="text-lg font-semibold text-(--text-primary)">Revenue Entries</h3>
                 </div>
 
                 {loading ? (
                     <div className="text-center py-8">
                         <div className="spinner mx-auto mb-3"></div>
-                        <p className="text-[--text-muted]">Loading revenue entries...</p>
+                        <p className="text-(--text-muted)">Loading revenue entries...</p>
                     </div>
                 ) : revenues.length === 0 ? (
                     <div className="text-center py-12">
-                        <svg className="w-16 h-16 text-[--text-muted] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-16 h-16 text-(--text-muted) mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
-                        <h3 className="text-lg font-semibold text-[--text-primary] mb-2">No Revenue Entries</h3>
-                        <p className="text-[--text-muted] mb-4">
+                        <h3 className="text-lg font-semibold text-(--text-primary) mb-2">No Revenue Entries</h3>
+                        <p className="text-(--text-muted) mb-4">
                             Start tracking your revenue by adding your first entry.
                         </p>
                         <button
@@ -176,41 +176,41 @@ export default function RevenueSection() {
                         {revenues.map((revenue) => {
                             const project = projects.find(p => p.id === revenue.projectId);
                             return (
-                                <div key={revenue.id} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between p-4 bg-[--bg-secondary] rounded-lg hover:bg-[--bg-tertiary] transition-colors min-w-0">
+                                <div key={revenue.id} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between p-4 bg-(--bg-secondary) rounded-lg hover:bg-(--bg-tertiary) transition-colors min-w-0">
                                     <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
-                                        <div className="p-3 bg-[--accent-green]/10 rounded-lg shrink-0">
-                                            <svg className="w-5 h-5 text-[--accent-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className="p-3 bg-(--accent-green)/10 rounded-lg shrink-0">
+                                            <svg className="w-5 h-5 text-(--accent-green)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                             </svg>
                                         </div>
                                         <div className="min-w-0">
-                                            <h4 className="font-semibold text-[--text-primary] break-words">{revenue.description}</h4>
-                                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[--text-muted] mt-1">
+                                            <h4 className="font-semibold text-(--text-primary) wrap-break-word">{revenue.description}</h4>
+                                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-(--text-muted) mt-1">
                                                 <span>{revenue.category}</span>
                                                 <span>•</span>
                                                 <span>{formatDate(revenue.date)}</span>
                                                 {project && (
                                                     <>
                                                         <span>•</span>
-                                                        <span className="break-words">{project.name}</span>
+                                                        <span className="wrap-break-word">{project.name}</span>
                                                     </>
                                                 )}
                                             </div>
                                             {revenue.notes && (
-                                                <p className="text-sm text-[--text-muted] mt-1 break-words">{revenue.notes}</p>
+                                                <p className="text-sm text-(--text-muted) mt-1 wrap-break-word">{revenue.notes}</p>
                                             )}
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between gap-3 sm:justify-end">
                                         <div className="text-left sm:text-right min-w-0">
-                                            <p className="text-base sm:text-lg font-bold text-[--accent-green] break-words">
+                                            <p className="text-base sm:text-lg font-bold text-(--accent-green) wrap-break-word">
                                                 {formatCurrency(revenue.amount)}
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-2 shrink-0">
                                             <button
                                                 onClick={() => handleEdit(revenue)}
-                                                className="p-2 text-[--text-muted] hover:text-[--accent-cyan] hover:bg-[--accent-cyan]/10 rounded-lg transition-colors"
+                                                className="p-2 text-(--text-muted) hover:text-(--accent-cyan) hover:bg-(--accent-cyan)/10 rounded-lg transition-colors"
                                                 title="Edit revenue"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -219,7 +219,7 @@ export default function RevenueSection() {
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(revenue.id)}
-                                                className="p-2 text-[--text-muted] hover:text-[--accent-red] hover:bg-[--accent-red]/10 rounded-lg transition-colors"
+                                                className="p-2 text-(--text-muted) hover:text-(--accent-red) hover:bg-(--accent-red)/10 rounded-lg transition-colors"
                                                 title="Delete revenue"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default function RevenueSection() {
             >
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Description *
                         </label>
                         <input
@@ -258,7 +258,7 @@ export default function RevenueSection() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Amount *
                             </label>
                             <input
@@ -273,7 +273,7 @@ export default function RevenueSection() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Date *
                             </label>
                             <input
@@ -288,7 +288,7 @@ export default function RevenueSection() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Category *
                             </label>
                             <select
@@ -305,7 +305,7 @@ export default function RevenueSection() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Project (Optional)
                             </label>
                             <select
@@ -322,7 +322,7 @@ export default function RevenueSection() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Notes (Optional)
                         </label>
                         <textarea

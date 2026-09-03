@@ -18,7 +18,7 @@ export default function NoticesPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h1 className="text-2xl font-bold text-gradient">Notices & Announcements</h1>
-                        <p className="text-sm text-[--text-muted] mt-1">
+                        <p className="text-sm text-(--text-muted) mt-1">
                             Stay updated with important announcements
                         </p>
                     </div>
@@ -40,7 +40,7 @@ export default function NoticesPage() {
                     <div className="flex items-center justify-center py-20">
                         <div className="text-center">
                             <div className="spinner spinner-lg mx-auto mb-4"></div>
-                            <p className="text-[--text-muted]">Loading notices...</p>
+                            <p className="text-(--text-muted)">Loading notices...</p>
                         </div>
                     </div>
                 ) : notices.length === 0 ? (

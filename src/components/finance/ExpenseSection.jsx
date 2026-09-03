@@ -120,8 +120,8 @@ export default function ExpenseSection() {
             {/* Header with Add Button */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
-                    <h2 className="text-xl font-semibold text-[--text-primary]">Expense Management</h2>
-                    <p className="text-[--text-muted] mt-1">Track and categorize business expenses</p>
+                    <h2 className="text-xl font-semibold text-(--text-primary)">Expense Management</h2>
+                    <p className="text-(--text-muted) mt-1">Track and categorize business expenses</p>
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
@@ -140,16 +140,16 @@ export default function ExpenseSection() {
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-[--text-muted]">Total Expenses</p>
-                            <p className="text-2xl sm:text-3xl font-bold text-[--accent-red] break-words">
+                            <p className="text-sm font-medium text-(--text-muted)">Total Expenses</p>
+                            <p className="text-2xl sm:text-3xl font-bold text-(--accent-red) wrap-break-word">
                                 {formatCurrency(totalExpenses)}
                             </p>
-                            <p className="text-sm text-[--text-muted] mt-1">
+                            <p className="text-sm text-(--text-muted) mt-1">
                                 {expenses.length} {expenses.length === 1 ? 'entry' : 'entries'}
                             </p>
                         </div>
-                        <div className="hidden sm:block p-4 bg-[--accent-red]/10 rounded-lg shrink-0">
-                            <svg className="w-8 h-8 text-[--accent-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="hidden sm:block p-4 bg-(--accent-red)/10 rounded-lg shrink-0">
+                            <svg className="w-8 h-8 text-(--accent-red)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
@@ -160,22 +160,22 @@ export default function ExpenseSection() {
                 <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-[--text-muted]">Top Category</p>
+                            <p className="text-sm font-medium text-(--text-muted)">Top Category</p>
                             {Object.keys(expensesByCategory).length > 0 ? (
                                 <>
-                                    <p className="text-lg sm:text-xl font-bold text-[--text-primary] break-words">
+                                    <p className="text-lg sm:text-xl font-bold text-(--text-primary) wrap-break-word">
                                         {Object.entries(expensesByCategory).sort(([,a], [,b]) => b - a)[0][0]}
                                     </p>
-                                    <p className="text-sm text-[--accent-red] mt-1 break-words">
+                                    <p className="text-sm text-(--accent-red) mt-1 wrap-break-word">
                                         {formatCurrency(Object.entries(expensesByCategory).sort(([,a], [,b]) => b - a)[0][1])}
                                     </p>
                                 </>
                             ) : (
-                                <p className="text-xl font-bold text-[--text-muted]">No expenses yet</p>
+                                <p className="text-xl font-bold text-(--text-muted)">No expenses yet</p>
                             )}
                         </div>
-                        <div className="hidden sm:block p-4 bg-[--accent-cyan]/10 rounded-lg shrink-0">
-                            <svg className="w-8 h-8 text-[--accent-cyan]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="hidden sm:block p-4 bg-(--accent-cyan)/10 rounded-lg shrink-0">
+                            <svg className="w-8 h-8 text-(--accent-cyan)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
@@ -186,21 +186,21 @@ export default function ExpenseSection() {
             {/* Expense List */}
             <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-[--text-primary]">Expense Entries</h3>
+                    <h3 className="text-lg font-semibold text-(--text-primary)">Expense Entries</h3>
                 </div>
 
                 {loading ? (
                     <div className="text-center py-8">
                         <div className="spinner mx-auto mb-3"></div>
-                        <p className="text-[--text-muted]">Loading expense entries...</p>
+                        <p className="text-(--text-muted)">Loading expense entries...</p>
                     </div>
                 ) : expenses.length === 0 ? (
                     <div className="text-center py-12">
-                        <svg className="w-16 h-16 text-[--text-muted] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-16 h-16 text-(--text-muted) mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <h3 className="text-lg font-semibold text-[--text-primary] mb-2">No Expense Entries</h3>
-                        <p className="text-[--text-muted] mb-4">
+                        <h3 className="text-lg font-semibold text-(--text-primary) mb-2">No Expense Entries</h3>
+                        <p className="text-(--text-muted) mb-4">
                             Start tracking your expenses by adding your first entry.
                         </p>
                         <button
@@ -215,41 +215,41 @@ export default function ExpenseSection() {
                         {expenses.map((expense) => {
                             const project = projects.find(p => p.id === expense.projectId);
                             return (
-                                <div key={expense.id} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between p-4 bg-[--bg-secondary] rounded-lg hover:bg-[--bg-tertiary] transition-colors min-w-0">
+                                <div key={expense.id} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between p-4 bg-(--bg-secondary) rounded-lg hover:bg-(--bg-tertiary) transition-colors min-w-0">
                                     <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
-                                        <div className="p-3 bg-[--accent-red]/10 rounded-lg shrink-0">
-                                            <svg className="w-5 h-5 text-[--accent-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className="p-3 bg-(--accent-red)/10 rounded-lg shrink-0">
+                                            <svg className="w-5 h-5 text-(--accent-red)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                             </svg>
                                         </div>
                                         <div className="min-w-0">
-                                            <h4 className="font-semibold text-[--text-primary] break-words">{expense.description}</h4>
-                                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[--text-muted] mt-1">
+                                            <h4 className="font-semibold text-(--text-primary) wrap-break-word">{expense.description}</h4>
+                                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-(--text-muted) mt-1">
                                                 <span>{expense.category}</span>
                                                 <span>•</span>
                                                 <span>{formatDate(expense.date)}</span>
                                                 {project && (
                                                     <>
                                                         <span>•</span>
-                                                        <span className="break-words">{project.name}</span>
+                                                        <span className="wrap-break-word">{project.name}</span>
                                                     </>
                                                 )}
                                             </div>
                                             {expense.notes && (
-                                                <p className="text-sm text-[--text-muted] mt-1 break-words">{expense.notes}</p>
+                                                <p className="text-sm text-(--text-muted) mt-1 wrap-break-word">{expense.notes}</p>
                                             )}
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between gap-3 sm:justify-end">
                                         <div className="text-left sm:text-right min-w-0">
-                                            <p className="text-base sm:text-lg font-bold text-[--accent-red] break-words">
+                                            <p className="text-base sm:text-lg font-bold text-(--accent-red) wrap-break-word">
                                                 -{formatCurrency(expense.amount)}
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-2 shrink-0">
                                             <button
                                                 onClick={() => handleEdit(expense)}
-                                                className="p-2 text-[--text-muted] hover:text-[--accent-cyan] hover:bg-[--accent-cyan]/10 rounded-lg transition-colors"
+                                                className="p-2 text-(--text-muted) hover:text-(--accent-cyan) hover:bg-(--accent-cyan)/10 rounded-lg transition-colors"
                                                 title="Edit expense"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +258,7 @@ export default function ExpenseSection() {
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(expense.id)}
-                                                className="p-2 text-[--text-muted] hover:text-[--accent-red] hover:bg-[--accent-red]/10 rounded-lg transition-colors"
+                                                className="p-2 text-(--text-muted) hover:text-(--accent-red) hover:bg-(--accent-red)/10 rounded-lg transition-colors"
                                                 title="Delete expense"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -282,7 +282,7 @@ export default function ExpenseSection() {
             >
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Description *
                         </label>
                         <input
@@ -297,7 +297,7 @@ export default function ExpenseSection() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Amount *
                             </label>
                             <input
@@ -312,7 +312,7 @@ export default function ExpenseSection() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Date *
                             </label>
                             <input
@@ -327,7 +327,7 @@ export default function ExpenseSection() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Category *
                             </label>
                             <select
@@ -344,7 +344,7 @@ export default function ExpenseSection() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                            <label className="block text-sm font-medium text-(--text-primary) mb-2">
                                 Project (Optional)
                             </label>
                             <select
@@ -361,7 +361,7 @@ export default function ExpenseSection() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-[--text-primary] mb-2">
+                        <label className="block text-sm font-medium text-(--text-primary) mb-2">
                             Notes (Optional)
                         </label>
                         <textarea

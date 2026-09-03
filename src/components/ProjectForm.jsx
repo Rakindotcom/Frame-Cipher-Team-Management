@@ -18,8 +18,8 @@ export default function ProjectForm({ initialData, onSubmit, onCancel }) {
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
-                    Project Name <span className="text-[--accent-red]">*</span>
+                <label className="block text-sm font-medium text-(--text-secondary)">
+                    Project Name <span className="text-(--accent-red)">*</span>
                 </label>
                 <input
                     type="text"
@@ -32,7 +32,7 @@ export default function ProjectForm({ initialData, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-                <label className="block text-sm font-medium text-[--text-secondary]">
+                <label className="block text-sm font-medium text-(--text-secondary)">
                     Description
                 </label>
                 <textarea

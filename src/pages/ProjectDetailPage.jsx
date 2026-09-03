@@ -115,7 +115,7 @@ export default function ProjectDetailPage() {
                 <div className="flex items-center justify-center py-20">
                     <div className="text-center">
                         <div className="spinner spinner-lg mx-auto mb-4"></div>
-                        <p className="text-[--text-muted]">Loading project...</p>
+                        <p className="text-(--text-muted)">Loading project...</p>
                     </div>
                 </div>
             </Layout>
@@ -126,10 +126,10 @@ export default function ProjectDetailPage() {
         return (
             <Layout>
                 <div className="glass-card-static p-8 text-center">
-                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 mx-auto text-(--text-muted) opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <p className="text-[--text-muted]">Project not found</p>
+                    <p className="text-(--text-muted)">Project not found</p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
                         Back to Projects
                     </Link>
@@ -142,11 +142,11 @@ export default function ProjectDetailPage() {
         return (
             <Layout>
                 <div className="glass-card-static p-8 text-center">
-                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 mx-auto text-(--text-muted) opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c.828 0 1.5-.672 1.5-1.5S12.828 8 12 8s-1.5.672-1.5 1.5S11.172 11 12 11zm0 0v3m0 3h.01M4.93 19h14.14c1.54 0 2.5-1.667 1.73-3L13.73 4c-.77-1.333-2.69-1.333-3.46 0L3.2 16c-.77 1.333.192 3 1.73 3z" />
                     </svg>
-                    <p className="text-[--text-primary] font-medium">No assigned tasks in this project</p>
-                    <p className="text-[--text-muted] text-sm mt-2">
+                    <p className="text-(--text-primary) font-medium">No assigned tasks in this project</p>
+                    <p className="text-(--text-muted) text-sm mt-2">
                         Ask an admin to assign you a task here if you need access.
                     </p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
@@ -166,7 +166,7 @@ export default function ProjectDetailPage() {
                     <div className="flex items-start gap-3">
                         <Link
                             to="/projects"
-                            className="p-2 rounded-lg hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors shrink-0"
+                            className="p-2 rounded-lg hover:bg-(--bg-tertiary) text-(--text-muted) hover:text-(--text-primary) transition-colors shrink-0"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -174,10 +174,10 @@ export default function ProjectDetailPage() {
                         </Link>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap mb-1">
-                                <h1 className="text-lg sm:text-xl font-bold text-[--text-primary]">{project.name}</h1>
+                                <h1 className="text-lg sm:text-xl font-bold text-(--text-primary)">{project.name}</h1>
                             </div>
                             {project.description && (
-                                <p className="text-sm text-[--text-muted] line-clamp-2">{project.description}</p>
+                                <p className="text-sm text-(--text-muted) line-clamp-2">{project.description}</p>
                             )}
                         </div>
                     </div>
@@ -208,21 +208,21 @@ export default function ProjectDetailPage() {
 
                         {/* Progress - Mobile: Full width, Desktop: Inline */}
                         <div className="flex sm:hidden w-full items-center gap-2 text-sm px-1">
-                            <span className="text-[--text-muted] text-xs">{progressPercent}%</span>
-                            <div className="flex-1 h-1.5 bg-[--bg-tertiary] rounded-full overflow-hidden">
+                            <span className="text-(--text-muted) text-xs">{progressPercent}%</span>
+                            <div className="flex-1 h-1.5 bg-(--bg-tertiary) rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-linear-to-r from-[--accent-cyan] to-[--accent-cyan] rounded-full transition-all"
+                                    className="h-full bg-linear-to-r from-(--accent-cyan) to-(--accent-cyan) rounded-full transition-all"
                                     style={{ width: `${progressPercent}%` }}
                                 ></div>
                             </div>
-                            <span className="text-[--text-muted] text-xs">{taskStats.done}/{taskStats.total}</span>
+                            <span className="text-(--text-muted) text-xs">{taskStats.done}/{taskStats.total}</span>
                         </div>
 
                         <div className="hidden sm:flex items-center gap-2 text-sm">
-                            <span className="text-[--text-muted]">{progressPercent}%</span>
-                            <div className="w-24 h-1.5 bg-[--bg-tertiary] rounded-full overflow-hidden">
+                            <span className="text-(--text-muted)">{progressPercent}%</span>
+                            <div className="w-24 h-1.5 bg-(--bg-tertiary) rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-linear-to-r from-[--accent-cyan] to-[--accent-cyan] rounded-full transition-all"
+                                    className="h-full bg-linear-to-r from-(--accent-cyan) to-(--accent-cyan) rounded-full transition-all"
                                     style={{ width: `${progressPercent}%` }}
                                 ></div>
                             </div>
@@ -246,7 +246,7 @@ export default function ProjectDetailPage() {
                             <div className="flex items-center gap-1">
                                 <button
                                     onClick={() => setShowEditModal(true)}
-                                    className="p-2 rounded-lg hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                                    className="p-2 rounded-lg hover:bg-(--bg-tertiary) text-(--text-muted) hover:text-(--text-primary) transition-colors"
                                     title="Edit project"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +255,7 @@ export default function ProjectDetailPage() {
                                 </button>
                                 <button
                                     onClick={handleDeleteProject}
-                                    className="p-2 rounded-lg hover:bg-[--accent-red]/10 text-[--text-muted] hover:text-[--accent-red] transition-colors"
+                                    className="p-2 rounded-lg hover:bg-(--accent-red)/10 text-(--text-muted) hover:text-(--accent-red) transition-colors"
                                     title="Delete project"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
