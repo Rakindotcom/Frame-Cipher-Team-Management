@@ -22,6 +22,7 @@ export default function BudgetSection() {
 
     const categories = [
         'Office Supplies',
+        'Employee Salary',
         'Software & Tools',
         'Marketing',
         'Travel',

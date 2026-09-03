@@ -131,6 +131,7 @@ export const EXPENSE_CATEGORIES = [
     'Hardware & Equipment',
     'Marketing & Advertising',
     'Office Supplies',
+    'Employee Salary',
     'Travel & Transportation',
     'Professional Services',
     'Utilities',

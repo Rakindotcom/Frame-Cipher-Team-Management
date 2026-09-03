@@ -47,6 +47,7 @@ export default function FinanceDashboard() {
 
     const expenseCategories = [
         'Office Supplies',
+        'Employee Salary',
         'Software & Tools',
         'Marketing',
         'Travel',

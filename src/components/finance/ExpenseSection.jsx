@@ -21,6 +21,7 @@ export default function ExpenseSection() {
 
     const categories = [
         'Office Supplies',
+        'Employee Salary',
         'Software & Tools',
         'Marketing',
         'Travel',
