@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
     subscribeToProjects,
     createProject,
@@ -6,31 +6,26 @@ import {
     deleteProject,
     getProject
 } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const ProjectsContext = createContext(null);
+import { useAuth } from '../hooks/useAuth';
+import { ProjectsContext } from './contexts';
 
 export function ProjectsProvider({ children }) {
     const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user) {
-            setProjects([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId) return;
 
-        setLoading(true);
         const unsubscribe = subscribeToProjects((projectsList) => {
             setProjects(projectsList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, [userId]);
 
     const addProject = async (projectData) => {
         try {
@@ -69,7 +64,7 @@ export function ProjectsProvider({ children }) {
         }
     };
 
-    const fetchProject = async (projectId) => {
+    const fetchProject = useCallback(async (projectId) => {
         try {
             return await getProject(projectId);
         } catch (err) {
@@ -77,11 +72,12 @@ export function ProjectsProvider({ children }) {
             setError(err.message);
             throw err;
         }
-    };
+    }, []);
 
+    const hasCurrentData = Boolean(userId && loadedUserId === userId);
     const value = {
-        projects,
-        loading,
+        projects: hasCurrentData ? projects : [],
+        loading: Boolean(userId && !hasCurrentData),
         error,
         addProject,
         editProject,
@@ -95,13 +91,3 @@ export function ProjectsProvider({ children }) {
         </ProjectsContext.Provider>
     );
 }
-
-export function useProjects() {
-    const context = useContext(ProjectsContext);
-    if (!context) {
-        throw new Error('useProjects must be used within a ProjectsProvider');
-    }
-    return context;
-}
-
-export default ProjectsContext;

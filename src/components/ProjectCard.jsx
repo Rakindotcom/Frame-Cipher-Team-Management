@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { formatDate, truncateText } from '../utils/helpers';
-import { useTasks } from '../context/TasksContext';
-import { useAuth } from '../context/AuthContext';
+import { useTasks } from '../hooks/useTasks';
+import { useAuth } from '../hooks/useAuth';
 
 export default function ProjectCard({ project }) {
     const { getTasksByProject } = useTasks();

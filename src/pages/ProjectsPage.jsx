@@ -3,9 +3,9 @@ import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import ProjectForm from '../components/ProjectForm';
 import Modal from '../components/Modal';
-import { useProjects } from '../context/ProjectsContext';
-import { useTasks } from '../context/TasksContext';
-import { useAuth } from '../context/AuthContext';
+import { useProjects } from '../hooks/useProjects';
+import { useTasks } from '../hooks/useTasks';
+import { useAuth } from '../hooks/useAuth';
 
 export default function ProjectsPage() {
     const { projects, loading, addProject } = useProjects();

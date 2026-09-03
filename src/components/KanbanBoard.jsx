@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { useTasks } from '../context/TasksContext';
+import { useTasks } from '../hooks/useTasks';
 import KanbanColumn from './KanbanColumn';
 
 const COLUMNS = [

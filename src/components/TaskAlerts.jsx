@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { useProjects } from '../context/ProjectsContext';
-import { useTasks } from '../context/TasksContext';
+import { useAuth } from '../hooks/useAuth';
+import { useProjects } from '../hooks/useProjects';
+import { useTasks } from '../hooks/useTasks';
 
 const MEMBER_ALERT_STATUSES = ['todo', 'need-fixing'];
 const STATUS_LABELS = {

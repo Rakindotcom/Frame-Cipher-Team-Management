@@ -6,11 +6,11 @@ import TaskForm from '../components/TaskForm';
 import ProjectForm from '../components/ProjectForm';
 import KanbanBoard from '../components/KanbanBoard';
 import Modal from '../components/Modal';
-import { useProjects } from '../context/ProjectsContext';
-import { useTasks } from '../context/TasksContext';
-import { useAuth } from '../context/AuthContext';
-import { useConfirm } from '../components/ConfirmDialog';
-import { useToast } from '../components/Toast';
+import { useProjects } from '../hooks/useProjects';
+import { useTasks } from '../hooks/useTasks';
+import { useAuth } from '../hooks/useAuth';
+import { useConfirm } from '../hooks/useConfirm';
+import { useToast } from '../hooks/useToast';
 
 export default function ProjectDetailPage() {
     const { projectId } = useParams();
@@ -25,38 +25,39 @@ export default function ProjectDetailPage() {
     const [loading, setLoading] = useState(true);
     const [showTaskModal, setShowTaskModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
-    const [viewMode, setViewMode] = useState('board'); // 'board' or 'list'
+    const [viewMode, setViewMode] = useState(
+        () => localStorage.getItem('projectViewMode') || 'board'
+    ); // 'board' or 'list'
     const [newTaskStatus, setNewTaskStatus] = useState('todo');
 
     useEffect(() => {
-        loadProject();
-    }, [projectId]);
+        let isActive = true;
 
-    // Load view preference from localStorage
-    useEffect(() => {
-        const saved = localStorage.getItem('projectViewMode');
-        if (saved) setViewMode(saved);
-    }, []);
+        const loadProject = async () => {
+            try {
+                const data = await fetchProject(projectId);
+                if (!data) {
+                    navigate('/projects');
+                    return;
+                }
+                if (isActive) setProject(data);
+            } catch (error) {
+                console.error('Error loading project:', error);
+                navigate('/projects');
+            } finally {
+                if (isActive) setLoading(false);
+            }
+        };
+
+        loadProject();
+        return () => {
+            isActive = false;
+        };
+    }, [fetchProject, navigate, projectId]);
 
     const handleViewChange = (mode) => {
         setViewMode(mode);
         localStorage.setItem('projectViewMode', mode);
-    };
-
-    const loadProject = async () => {
-        try {
-            const data = await fetchProject(projectId);
-            if (!data) {
-                navigate('/projects');
-                return;
-            }
-            setProject(data);
-        } catch (error) {
-            console.error('Error loading project:', error);
-            navigate('/projects');
-        } finally {
-            setLoading(false);
-        }
     };
 
     const projectTasks = getTasksByProject(projectId);
@@ -103,7 +104,7 @@ export default function ProjectDetailPage() {
             await removeProject(projectId);
             addToast('Project deleted successfully', 'success');
             navigate('/projects');
-        } catch (error) {
+        } catch {
             addToast('Failed to delete project', 'error');
         }
     };

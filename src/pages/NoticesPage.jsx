@@ -3,8 +3,8 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import NoticeForm from '../components/NoticeForm';
 import NoticeCard from '../components/NoticeCard';
-import { useNotices } from '../context/NoticesContext';
-import { useAuth } from '../context/AuthContext';
+import { useNotices } from '../hooks/useNotices';
+import { useAuth } from '../hooks/useAuth';
 
 export default function NoticesPage() {
     const { notices, loading } = useNotices();

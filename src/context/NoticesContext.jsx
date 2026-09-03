@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     subscribeToNotices,
     createNotice,
@@ -6,31 +6,26 @@ import {
     deleteNotice,
     addNoticeComment
 } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const NoticesContext = createContext(null);
+import { useAuth } from '../hooks/useAuth';
+import { NoticesContext } from './contexts';
 
 export function NoticesProvider({ children }) {
     const [notices, setNotices] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user) {
-            setNotices([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId) return;
 
-        setLoading(true);
         const unsubscribe = subscribeToNotices((noticesList) => {
             setNotices(noticesList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, [userId]);
 
     const addNotice = async (noticeData) => {
         try {
@@ -80,9 +75,10 @@ export function NoticesProvider({ children }) {
         }
     };
 
+    const hasCurrentData = Boolean(userId && loadedUserId === userId);
     const value = {
-        notices,
-        loading,
+        notices: hasCurrentData ? notices : [],
+        loading: Boolean(userId && !hasCurrentData),
         error,
         addNotice,
         editNotice,
@@ -96,13 +92,3 @@ export function NoticesProvider({ children }) {
         </NoticesContext.Provider>
     );
 }
-
-export function useNotices() {
-    const context = useContext(NoticesContext);
-    if (!context) {
-        throw new Error('useNotices must be used within a NoticesProvider');
-    }
-    return context;
-}
-
-export default NoticesContext;

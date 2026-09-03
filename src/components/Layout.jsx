@@ -2,37 +2,41 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import TaskAlerts from './TaskAlerts';
 
+const getStoredSidebarState = () => {
+    const saved = localStorage.getItem('sidebarOpen');
+    return saved === null ? true : JSON.parse(saved);
+};
+
+const getInitialLayoutState = () => {
+    const isMobile = window.innerWidth < 1024;
+    return {
+        isMobile,
+        sidebarOpen: isMobile ? false : getStoredSidebarState()
+    };
+};
+
 export default function Layout({ children }) {
-    const [sidebarOpen, setSidebarOpen] = useState(true);
-    const [isMobile, setIsMobile] = useState(false);
+    const [{ sidebarOpen, isMobile }, setLayoutState] = useState(getInitialLayoutState);
 
     useEffect(() => {
-        const checkMobile = () => {
-            const mobile = window.innerWidth < 1024;
-            setIsMobile(mobile);
-            if (mobile) {
-                setSidebarOpen(false);
-            }
+        const handleResize = () => {
+            const nextIsMobile = window.innerWidth < 1024;
+            setLayoutState((current) => {
+                if (current.isMobile === nextIsMobile) return current;
+                return {
+                    isMobile: nextIsMobile,
+                    sidebarOpen: nextIsMobile ? false : getStoredSidebarState()
+                };
+            });
         };
 
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
-
-    // Load sidebar state from localStorage on desktop
-    useEffect(() => {
-        if (!isMobile) {
-            const saved = localStorage.getItem('sidebarOpen');
-            if (saved !== null) {
-                setSidebarOpen(JSON.parse(saved));
-            }
-        }
-    }, [isMobile]);
 
     const toggleSidebar = () => {
         const newState = !sidebarOpen;
-        setSidebarOpen(newState);
+        setLayoutState((current) => ({ ...current, sidebarOpen: newState }));
         if (!isMobile) {
             localStorage.setItem('sidebarOpen', JSON.stringify(newState));
         }

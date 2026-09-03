@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     subscribeToClients,
     createClient,
@@ -6,31 +6,26 @@ import {
     deleteClient,
     getClient
 } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const ClientsContext = createContext(null);
+import { useAuth } from '../hooks/useAuth';
+import { ClientsContext } from './contexts';
 
 export function ClientsProvider({ children }) {
     const [clients, setClients] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user, isAdmin } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user || !isAdmin) {
-            setClients([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId || !isAdmin) return;
 
-        setLoading(true);
         const unsubscribe = subscribeToClients((clientsList) => {
             setClients(clientsList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => unsubscribe();
-    }, [user, isAdmin]);
+    }, [userId, isAdmin]);
 
     const addClient = async (clientData) => {
         try {
@@ -79,9 +74,10 @@ export function ClientsProvider({ children }) {
         }
     };
 
+    const hasCurrentData = Boolean(userId && isAdmin && loadedUserId === userId);
     const value = {
-        clients,
-        loading,
+        clients: hasCurrentData ? clients : [],
+        loading: Boolean(userId && isAdmin && !hasCurrentData),
         error,
         addClient,
         editClient,
@@ -95,13 +91,3 @@ export function ClientsProvider({ children }) {
         </ClientsContext.Provider>
     );
 }
-
-export function useClients() {
-    const context = useContext(ClientsContext);
-    if (!context) {
-        throw new Error('useClients must be used within a ClientsProvider');
-    }
-    return context;
-}
-
-export default ClientsContext;

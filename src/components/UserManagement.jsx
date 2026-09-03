@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useUsers } from '../context/UsersContext';
-import { useAuth } from '../context/AuthContext';
-import { useToast } from './Toast';
+import { useUsers } from '../hooks/useUsers';
+import { useAuth } from '../hooks/useAuth';
+import { useToast } from '../hooks/useToast';
 import { USER_ROLES } from '../types';
 import { formatDate, getInitials, getAvatarColor } from '../utils/helpers';
 import Modal from './Modal';

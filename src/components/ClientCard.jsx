@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useClients } from '../context/ClientsContext';
-import { useAuth } from '../context/AuthContext';
-import { useConfirm } from './ConfirmDialog';
-import { useToast } from './Toast';
+import { useClients } from '../hooks/useClients';
+import { useAuth } from '../hooks/useAuth';
+import { useConfirm } from '../hooks/useConfirm';
+import { useToast } from '../hooks/useToast';
 import Modal from './Modal';
 import ClientForm from './ClientForm';
 
@@ -66,7 +66,7 @@ const getIndustryIcon = (industry) => {
 export default function ClientCard({ client }) {
     const { editClient, removeClient } = useClients();
     const { isAdmin, user } = useAuth();
-    const confirm = useConfirm();
+    const { confirm } = useConfirm();
     const toast = useToast();
     const [showEditModal, setShowEditModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -79,7 +79,7 @@ export default function ClientCard({ client }) {
             await editClient(client.id, clientData);
             setShowEditModal(false);
             toast.success('Client updated successfully');
-        } catch (error) {
+        } catch {
             toast.error('Failed to update client');
         }
     };
@@ -96,7 +96,7 @@ export default function ClientCard({ client }) {
             try {
                 await removeClient(client.id);
                 toast.success('Client deleted successfully');
-            } catch (error) {
+            } catch {
                 toast.error('Failed to delete client');
             }
         }

@@ -3,8 +3,8 @@ import Layout from '../components/Layout';
 import ClientCard from '../components/ClientCard';
 import ClientForm from '../components/ClientForm';
 import Modal from '../components/Modal';
-import { useClients } from '../context/ClientsContext';
-import { useToast } from '../components/Toast';
+import { useClients } from '../hooks/useClients';
+import { useToast } from '../hooks/useToast';
 
 export default function ClientsPage() {
     const { clients, loading, addClient } = useClients();
@@ -29,7 +29,7 @@ export default function ClientsPage() {
             await addClient(clientData);
             setShowCreateModal(false);
             toast.success('Client added successfully');
-        } catch (error) {
+        } catch {
             toast.error('Failed to add client');
         }
     };

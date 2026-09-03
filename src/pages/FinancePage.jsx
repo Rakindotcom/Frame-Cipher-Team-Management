@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { useFinance } from '../context/FinanceContext';
+import { useFinance } from '../hooks/useFinance';
 
 // Import Finance subsection components (to be created)
 import FinanceDashboard from '../components/finance/FinanceDashboard';

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { formatDate, getStatusColor, getPriorityDotClass, isOverdue, formatCountdown } from '../utils/helpers';
-import { useUsers } from '../context/UsersContext';
+import { getStatusColor, getPriorityDotClass, isOverdue, formatCountdown } from '../utils/helpers';
+import { useUsers } from '../hooks/useUsers';
 import { getInitials, getAvatarColor } from '../utils/helpers';
 
-export default function TaskCard({ task, showProject = false }) {
+export default function TaskCard({ task }) {
     const { getUserName } = useUsers();
     const overdue = isOverdue(task.deadline) && task.status !== 'done';
     const assigneeName = getUserName(task.assignedTo);

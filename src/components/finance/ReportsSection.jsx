@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { useFinance } from '../../context/FinanceContext';
-import { useProjects } from '../../context/ProjectsContext';
+import { useFinance } from '../../hooks/useFinance';
+import { useProjects } from '../../hooks/useProjects';
 
 export default function ReportsSection() {
     const { revenues, expenses, budgets } = useFinance();

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { useProjects } from '../context/ProjectsContext';
-import { useTasks } from '../context/TasksContext';
+import { useAuth } from '../hooks/useAuth';
+import { useProjects } from '../hooks/useProjects';
+import { useTasks } from '../hooks/useTasks';
 import { signOut } from '../firebase/auth';
 import { getInitials, getAvatarColor } from '../utils/helpers';
 

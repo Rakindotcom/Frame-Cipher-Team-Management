@@ -1,8 +1,6 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import {
     subscribeToAllTasks,
-    subscribeToProjectTasks,
-    subscribeToUserTasks,
     subscribeToTask,
     createTask,
     updateTask,
@@ -10,31 +8,26 @@ import {
     addComment,
     getTask
 } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const TasksContext = createContext(null);
+import { useAuth } from '../hooks/useAuth';
+import { TasksContext } from './contexts';
 
 export function TasksProvider({ children }) {
     const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user) {
-            setTasks([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId) return;
 
-        setLoading(true);
         const unsubscribe = subscribeToAllTasks((tasksList) => {
             setTasks(tasksList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, [userId]);
 
     const addTask = async (taskData) => {
         try {
@@ -97,26 +90,32 @@ export function TasksProvider({ children }) {
         }
     };
 
+    const hasCurrentData = Boolean(userId && loadedUserId === userId);
+    const activeTasks = useMemo(
+        () => hasCurrentData ? tasks : [],
+        [hasCurrentData, tasks]
+    );
+
     const getTasksByProject = useCallback((projectId) => {
-        return tasks.filter(task => task.projectId === projectId);
-    }, [tasks]);
+        return activeTasks.filter(task => task.projectId === projectId);
+    }, [activeTasks]);
 
     const getTasksByUser = useCallback((userId) => {
-        return tasks.filter(task => task.assignedTo === userId);
-    }, [tasks]);
+        return activeTasks.filter(task => task.assignedTo === userId);
+    }, [activeTasks]);
 
     const getMyTasks = useCallback(() => {
         if (!user) return [];
-        return tasks.filter(task => task.assignedTo === user.uid);
-    }, [tasks, user]);
+        return activeTasks.filter(task => task.assignedTo === user.uid);
+    }, [activeTasks, user]);
 
     const subscribeToSingleTask = useCallback((taskId, callback) => {
         return subscribeToTask(taskId, callback);
     }, []);
 
     const value = {
-        tasks,
-        loading,
+        tasks: activeTasks,
+        loading: Boolean(userId && !hasCurrentData),
         error,
         addTask,
         editTask,
@@ -135,13 +134,3 @@ export function TasksProvider({ children }) {
         </TasksContext.Provider>
     );
 }
-
-export function useTasks() {
-    const context = useContext(TasksContext);
-    if (!context) {
-        throw new Error('useTasks must be used within a TasksProvider');
-    }
-    return context;
-}
-
-export default TasksContext;

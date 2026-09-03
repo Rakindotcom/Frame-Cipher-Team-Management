@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 export default function ProtectedRoute({ children, adminOnly = false }) {
-    const { user, userProfile, loading, isAdmin } = useAuth();
+    const { user, loading, isAdmin } = useAuth();
 
     if (loading) {
         return (

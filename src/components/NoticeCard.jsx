@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { useUsers } from '../context/UsersContext';
-import { useNotices } from '../context/NoticesContext';
-import { useToast } from './Toast';
-import { useConfirm } from './ConfirmDialog';
+import { useAuth } from '../hooks/useAuth';
+import { useUsers } from '../hooks/useUsers';
+import { useNotices } from '../hooks/useNotices';
+import { useToast } from '../hooks/useToast';
+import { useConfirm } from '../hooks/useConfirm';
 import { formatDate, getInitials, getAvatarColor } from '../utils/helpers';
 import Modal from './Modal';
 import NoticeForm from './NoticeForm';
@@ -42,7 +42,7 @@ export default function NoticeCard({ notice }) {
             });
             setComment('');
             addToast('Comment added', 'success');
-        } catch (error) {
+        } catch {
             addToast('Failed to add comment', 'error');
         } finally {
             setSubmitting(false);
@@ -62,7 +62,7 @@ export default function NoticeCard({ notice }) {
         try {
             await removeNotice(notice.id);
             addToast('Notice deleted successfully', 'success');
-        } catch (error) {
+        } catch {
             addToast('Failed to delete notice', 'error');
         }
     };

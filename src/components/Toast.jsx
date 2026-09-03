@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useCallback } from 'react';
-
-const ToastContext = createContext();
+import { useState, useCallback } from 'react';
+import { ToastContext } from '../context/contexts';
 
 export function ToastProvider({ children }) {
     const [toasts, setToasts] = useState([]);
@@ -29,15 +28,7 @@ export function ToastProvider({ children }) {
     );
 }
 
-export function useToast() {
-    const context = useContext(ToastContext);
-    if (!context) {
-        throw new Error('useToast must be used within ToastProvider');
-    }
-    return context;
-}
-
-function Toast({ id, message, type, onClose }) {
+function Toast({ message, type, onClose }) {
     const icons = {
         success: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

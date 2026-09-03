@@ -1,8 +1,8 @@
-import { useFinance } from '../../context/FinanceContext';
+import { useFinance } from '../../hooks/useFinance';
 import { useState } from 'react';
 import Modal from '../Modal';
-import { useProjects } from '../../context/ProjectsContext';
-import { useToast } from '../Toast';
+import { useProjects } from '../../hooks/useProjects';
+import { useToast } from '../../hooks/useToast';
 
 export default function FinanceDashboard() {
     const { 

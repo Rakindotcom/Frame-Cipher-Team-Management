@@ -5,13 +5,13 @@ import TaskForm from '../components/TaskForm';
 import CommentSection from '../components/CommentSection';
 import ActivityLog from '../components/ActivityLog';
 import Modal from '../components/Modal';
-import { useTasks } from '../context/TasksContext';
-import { useProjects } from '../context/ProjectsContext';
-import { useUsers } from '../context/UsersContext';
-import { useAuth } from '../context/AuthContext';
-import { useConfirm } from '../components/ConfirmDialog';
-import { useToast } from '../components/Toast';
-import { formatDate, getPriorityColor, getStatusColor, isOverdue, getInitials, getAvatarColor, formatCountdown, getPriorityDotClass } from '../utils/helpers';
+import { useTasks } from '../hooks/useTasks';
+import { useProjects } from '../hooks/useProjects';
+import { useUsers } from '../hooks/useUsers';
+import { useAuth } from '../hooks/useAuth';
+import { useConfirm } from '../hooks/useConfirm';
+import { useToast } from '../hooks/useToast';
+import { formatDate, getPriorityColor, isOverdue, getInitials, getAvatarColor, formatCountdown, getPriorityDotClass } from '../utils/helpers';
 import { TASK_STATUSES } from '../types';
 
 export default function TaskDetailPage() {
@@ -47,7 +47,7 @@ export default function TaskDetailPage() {
         });
 
         return () => unsubscribe();
-    }, [taskId]);
+    }, [fetchProject, navigate, subscribeToSingleTask, taskId]);
 
     const handleStatusChange = async (newStatus) => {
         await editTask(taskId, { status: newStatus }, 'status_changed');
@@ -73,7 +73,7 @@ export default function TaskDetailPage() {
             await removeTask(taskId);
             addToast('Task deleted successfully', 'success');
             navigate(`/projects/${task.projectId}`);
-        } catch (error) {
+        } catch {
             addToast('Failed to delete task', 'error');
         }
     };

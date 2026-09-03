@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useUsers } from '../context/UsersContext';
+import { useUsers } from '../hooks/useUsers';
 import { getInitials, getAvatarColor, getPriorityDotClass, formatCountdown, isOverdue } from '../utils/helpers';
 
 export default function KanbanCard({ task }) {

@@ -1,30 +1,25 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { subscribeToUsers, updateUserRole, updateUserName, getAllUsers } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const UsersContext = createContext(null);
+import { useEffect, useState } from 'react';
+import { subscribeToUsers, updateUserRole, updateUserName } from '../firebase/firestore';
+import { useAuth } from '../hooks/useAuth';
+import { UsersContext } from './contexts';
 
 export function UsersProvider({ children }) {
     const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user) {
-            setUsers([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId) return;
 
-        setLoading(true);
         const unsubscribe = subscribeToUsers((usersList) => {
             setUsers(usersList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, [userId]);
 
     const changeUserRole = async (userId, role) => {
         try {
@@ -48,18 +43,20 @@ export function UsersProvider({ children }) {
         }
     };
 
-    const getUserById = (userId) => {
-        return users.find(u => u.id === userId);
+    const activeUsers = loadedUserId === userId ? users : [];
+
+    const getUserById = (requestedUserId) => {
+        return activeUsers.find(u => u.id === requestedUserId);
     };
 
-    const getUserName = (userId) => {
-        const foundUser = users.find(u => u.id === userId);
+    const getUserName = (requestedUserId) => {
+        const foundUser = activeUsers.find(u => u.id === requestedUserId);
         return foundUser?.name || 'Unknown User';
     };
 
     const value = {
-        users,
-        loading,
+        users: activeUsers,
+        loading: Boolean(userId && loadedUserId !== userId),
         error,
         changeUserRole,
         changeUserName,
@@ -73,13 +70,3 @@ export function UsersProvider({ children }) {
         </UsersContext.Provider>
     );
 }
-
-export function useUsers() {
-    const context = useContext(UsersContext);
-    if (!context) {
-        throw new Error('useUsers must be used within a UsersProvider');
-    }
-    return context;
-}
-
-export default UsersContext;

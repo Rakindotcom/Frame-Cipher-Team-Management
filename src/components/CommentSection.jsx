@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useTasks } from '../context/TasksContext';
-import { useAuth } from '../context/AuthContext';
+import { useTasks } from '../hooks/useTasks';
+import { useAuth } from '../hooks/useAuth';
 import { formatDateTime, getInitials, getAvatarColor } from '../utils/helpers';
-import { useUsers } from '../context/UsersContext';
+import { useUsers } from '../hooks/useUsers';
 
 export default function CommentSection({ taskId, comments = [] }) {
     const { addTaskComment } = useTasks();

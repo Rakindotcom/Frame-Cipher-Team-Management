@@ -1,4 +1,4 @@
-import { useUsers } from '../context/UsersContext';
+import { useUsers } from '../hooks/useUsers';
 import { getRelativeTime, formatActivityEvent, getInitials, getAvatarColor } from '../utils/helpers';
 
 export default function ActivityLog({ activities = [] }) {

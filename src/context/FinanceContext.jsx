@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     subscribeToRevenues,
     subscribeToExpenses,
@@ -14,28 +14,21 @@ import {
     deleteBudget,
     getProjectFinances
 } from '../firebase/firestore';
-import { useAuth } from './AuthContext';
-
-const FinanceContext = createContext(null);
+import { useAuth } from '../hooks/useAuth';
+import { FinanceContext } from './contexts';
 
 export function FinanceProvider({ children }) {
     const [revenues, setRevenues] = useState([]);
     const [expenses, setExpenses] = useState([]);
     const [budgets, setBudgets] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadedUserId, setLoadedUserId] = useState(null);
     const [error, setError] = useState(null);
     const { user, isAdmin } = useAuth();
+    const userId = user?.uid;
 
     useEffect(() => {
-        if (!user || !isAdmin) {
-            setRevenues([]);
-            setExpenses([]);
-            setBudgets([]);
-            setLoading(false);
-            return;
-        }
+        if (!userId || !isAdmin) return;
 
-        setLoading(true);
         let unsubscribeRevenues, unsubscribeExpenses, unsubscribeBudgets;
 
         // Subscribe to revenues
@@ -51,7 +44,7 @@ export function FinanceProvider({ children }) {
         // Subscribe to budgets
         unsubscribeBudgets = subscribeToBudgets((budgetsList) => {
             setBudgets(budgetsList);
-            setLoading(false);
+            setLoadedUserId(userId);
         });
 
         return () => {
@@ -59,7 +52,7 @@ export function FinanceProvider({ children }) {
             if (unsubscribeExpenses) unsubscribeExpenses();
             if (unsubscribeBudgets) unsubscribeBudgets();
         };
-    }, [user, isAdmin]);
+    }, [userId, isAdmin]);
 
     // Revenue operations
     const addRevenue = async (revenueData) => {
@@ -261,12 +254,13 @@ export function FinanceProvider({ children }) {
         }
     }, [expenses, budgets]);
 
+    const hasCurrentData = Boolean(userId && isAdmin && loadedUserId === userId);
     const value = {
         // Data
-        revenues,
-        expenses,
-        budgets,
-        loading,
+        revenues: hasCurrentData ? revenues : [],
+        expenses: hasCurrentData ? expenses : [],
+        budgets: hasCurrentData ? budgets : [],
+        loading: Boolean(userId && isAdmin && !hasCurrentData),
         error,
         
         // Revenue operations
@@ -297,13 +291,3 @@ export function FinanceProvider({ children }) {
         </FinanceContext.Provider>
     );
 }
-
-export function useFinance() {
-    const context = useContext(FinanceContext);
-    if (!context) {
-        throw new Error('useFinance must be used within a FinanceProvider');
-    }
-    return context;
-}
-
-export default FinanceContext;

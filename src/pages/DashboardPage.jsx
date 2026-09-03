@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import TaskCard from '../components/TaskCard';
-import { useAuth } from '../context/AuthContext';
-import { useProjects } from '../context/ProjectsContext';
-import { useTasks } from '../context/TasksContext';
+import { useAuth } from '../hooks/useAuth';
+import { useProjects } from '../hooks/useProjects';
+import { useTasks } from '../hooks/useTasks';
 import { getGreeting } from '../utils/helpers';
 
 export default function DashboardPage() {

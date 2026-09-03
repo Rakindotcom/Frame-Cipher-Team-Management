@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useUsers } from '../context/UsersContext';
-import { useAuth } from '../context/AuthContext';
+import { useState } from 'react';
+import { useUsers } from '../hooks/useUsers';
+import { useAuth } from '../hooks/useAuth';
 
 export default function TaskForm({ projectId, initialData, defaultStatus = 'todo', onSubmit, onCancel }) {
     const { users } = useUsers();
@@ -13,12 +13,6 @@ export default function TaskForm({ projectId, initialData, defaultStatus = 'todo
     const [assignedTo, setAssignedTo] = useState(initialData?.assignedTo || user?.uid || '');
     const [deadline, setDeadline] = useState(initialData?.deadline || '');
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (!assignedTo && user?.uid) {
-            setAssignedTo(user.uid);
-        }
-    }, [user?.uid]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

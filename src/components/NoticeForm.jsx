@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useNotices } from '../context/NoticesContext';
-import { useToast } from './Toast';
+import { useNotices } from '../hooks/useNotices';
+import { useToast } from '../hooks/useToast';
 
 export default function NoticeForm({ initialData, onCancel, onSuccess }) {
     const { addNotice, editNotice } = useNotices();
@@ -24,7 +24,7 @@ export default function NoticeForm({ initialData, onCancel, onSuccess }) {
                 addToast('Notice created successfully', 'success');
             }
             onSuccess();
-        } catch (error) {
+        } catch {
             addToast('Failed to save notice', 'error');
         } finally {
             setLoading(false);

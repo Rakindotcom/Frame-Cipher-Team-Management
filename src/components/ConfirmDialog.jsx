@@ -1,7 +1,6 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import Modal from './Modal';
-
-const ConfirmContext = createContext();
+import { ConfirmContext } from '../context/contexts';
 
 export function ConfirmProvider({ children }) {
     const [confirmState, setConfirmState] = useState({
@@ -67,12 +66,4 @@ export function ConfirmProvider({ children }) {
             </Modal>
         </ConfirmContext.Provider>
     );
-}
-
-export function useConfirm() {
-    const context = useContext(ConfirmContext);
-    if (!context) {
-        throw new Error('useConfirm must be used within ConfirmProvider');
-    }
-    return context;
 }

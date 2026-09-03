@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useFinance } from '../../context/FinanceContext';
-import { useProjects } from '../../context/ProjectsContext';
-import { useToast } from '../Toast';
+import { useFinance } from '../../hooks/useFinance';
+import { useProjects } from '../../hooks/useProjects';
+import { useToast } from '../../hooks/useToast';
 import Modal from '../Modal';
 
 export default function ExpenseSection() {
