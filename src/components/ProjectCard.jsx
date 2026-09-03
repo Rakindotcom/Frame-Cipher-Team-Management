@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { formatDate, truncateText } from '../utils/helpers';
 import { useTasks } from '../context/TasksContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function ProjectCard({ project }) {
     const { getTasksByProject } = useTasks();
-    const tasks = getTasksByProject(project.id);
+    const { user, isAdmin } = useAuth();
+    const projectTasks = getTasksByProject(project.id);
+    const tasks = isAdmin
+        ? projectTasks
+        : projectTasks.filter((task) => task.assignedTo === user?.uid);
 
     const taskStats = {
         total: tasks.length,

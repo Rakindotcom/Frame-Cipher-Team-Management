@@ -16,8 +16,8 @@ export default function ProjectDetailPage() {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const { fetchProject, editProject, removeProject } = useProjects();
-    const { getTasksByProject, addTask } = useTasks();
-    const { isAdmin } = useAuth();
+    const { getTasksByProject, addTask, loading: tasksLoading } = useTasks();
+    const { user, isAdmin } = useAuth();
     const { confirm } = useConfirm();
     const { addToast } = useToast();
 
@@ -59,7 +59,11 @@ export default function ProjectDetailPage() {
         }
     };
 
-    const tasks = getTasksByProject(projectId);
+    const projectTasks = getTasksByProject(projectId);
+    const tasks = isAdmin
+        ? projectTasks
+        : projectTasks.filter((task) => task.assignedTo === user?.uid);
+    const canAccessProject = isAdmin || tasks.length > 0;
     const taskStats = {
         total: tasks.length,
         done: tasks.filter(t => t.status === 'done').length
@@ -104,7 +108,7 @@ export default function ProjectDetailPage() {
         }
     };
 
-    if (loading) {
+    if (loading || tasksLoading) {
         return (
             <Layout>
                 <div className="flex items-center justify-center py-20">
@@ -125,6 +129,25 @@ export default function ProjectDetailPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <p className="text-[--text-muted]">Project not found</p>
+                    <Link to="/projects" className="btn-primary inline-block mt-4">
+                        Back to Projects
+                    </Link>
+                </div>
+            </Layout>
+        );
+    }
+
+    if (!canAccessProject) {
+        return (
+            <Layout>
+                <div className="glass-card-static p-8 text-center">
+                    <svg className="w-16 h-16 mx-auto text-[--text-muted] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c.828 0 1.5-.672 1.5-1.5S12.828 8 12 8s-1.5.672-1.5 1.5S11.172 11 12 11zm0 0v3m0 3h.01M4.93 19h14.14c1.54 0 2.5-1.667 1.73-3L13.73 4c-.77-1.333-2.69-1.333-3.46 0L3.2 16c-.77 1.333.192 3 1.73 3z" />
+                    </svg>
+                    <p className="text-[--text-primary] font-medium">No assigned tasks in this project</p>
+                    <p className="text-[--text-muted] text-sm mt-2">
+                        Ask an admin to assign you a task here if you need access.
+                    </p>
                     <Link to="/projects" className="btn-primary inline-block mt-4">
                         Back to Projects
                     </Link>
@@ -205,15 +228,17 @@ export default function ProjectDetailPage() {
                         </div>
 
                         {/* Add Task - Mobile: Icon only, Desktop: With text */}
-                        <button
-                            onClick={() => setShowTaskModal(true)}
-                            className="btn-primary inline-flex items-center justify-center space-x-2 flex-1 sm:flex-initial"
-                        >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                            <span>New Task</span>
-                        </button>
+                        {isAdmin && (
+                            <button
+                                onClick={() => setShowTaskModal(true)}
+                                className="btn-primary inline-flex items-center justify-center space-x-2 flex-1 sm:flex-initial"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                <span>New Task</span>
+                            </button>
+                        )}
 
                         {/* Project Menu */}
                         {isAdmin && (
@@ -245,7 +270,9 @@ export default function ProjectDetailPage() {
                 {viewMode === 'board' && (
                     <KanbanBoard
                         projectId={projectId}
+                        tasks={tasks}
                         onAddTask={handleAddTaskFromColumn}
+                        canAddTask={isAdmin}
                     />
                 )}
 
@@ -258,16 +285,23 @@ export default function ProjectDetailPage() {
                                     <svg className="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                     </svg>
-                                    <p className="empty-state-title">No tasks yet</p>
-                                    <p className="empty-state-description">
-                                        Create your first task to get started
+                                    <p className="empty-state-title">
+                                        {isAdmin ? 'No tasks yet' : 'No assigned tasks yet'}
                                     </p>
-                                    <button
-                                        onClick={() => setShowTaskModal(true)}
-                                        className="btn-primary mt-4"
-                                    >
-                                        Create First Task
-                                    </button>
+                                    <p className="empty-state-description">
+                                        {isAdmin
+                                            ? 'Create your first task to get started'
+                                            : 'Assigned tasks in this project will appear here'
+                                        }
+                                    </p>
+                                    {isAdmin && (
+                                        <button
+                                            onClick={() => setShowTaskModal(true)}
+                                            className="btn-primary mt-4"
+                                        >
+                                            Create First Task
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         ) : (

@@ -7,27 +7,32 @@ import { useTasks } from '../context/TasksContext';
 import { getGreeting } from '../utils/helpers';
 
 export default function DashboardPage() {
-    const { userProfile, isAdmin } = useAuth();
+    const { user, userProfile, isAdmin } = useAuth();
     const { projects } = useProjects();
     const { tasks, getMyTasks } = useTasks();
 
     const myTasks = getMyTasks();
+    const visibleProjects = isAdmin
+        ? projects
+        : projects.filter((project) =>
+            tasks.some((task) => task.projectId === project.id && task.assignedTo === user?.uid)
+        );
     const pendingTasks = myTasks.filter(t => t.status !== 'done');
     const completedTasks = myTasks.filter(t => t.status === 'done');
     const completionRate = myTasks.length > 0 ? Math.round((completedTasks.length / myTasks.length) * 100) : 0;
 
     // Stats with icons
     const stats = [
-        {
+        ...(isAdmin ? [{
             label: 'Total Projects',
-            value: projects.length,
+            value: visibleProjects.length,
             icon: (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
             ),
             color: 'cyan'
-        },
+        }] : []),
         {
             label: 'My Tasks',
             value: myTasks.length,
@@ -82,15 +87,17 @@ export default function DashboardPage() {
                             Here's what's happening with your projects today
                         </p>
                     </div>
-                    <Link
-                        to="/projects"
-                        className="btn-primary inline-flex items-center space-x-2"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        <span>New Project</span>
-                    </Link>
+                    {isAdmin && (
+                        <Link
+                            to="/projects"
+                            className="btn-primary inline-flex items-center space-x-2"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            <span>New Project</span>
+                        </Link>
+                    )}
                 </div>
 
                 {/* Stats Grid */}
@@ -190,16 +197,23 @@ export default function DashboardPage() {
                             </Link>
                         </div>
                         <div className="space-y-3">
-                            {projects.length === 0 ? (
+                            {visibleProjects.length === 0 ? (
                                 <div className="empty-state py-8">
                                     <svg className="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                                     </svg>
-                                    <p className="empty-state-title">No projects yet</p>
-                                    <p className="empty-state-description">Create your first project to get started</p>
+                                    <p className="empty-state-title">
+                                        {isAdmin ? 'No projects yet' : 'No assigned projects yet'}
+                                    </p>
+                                    <p className="empty-state-description">
+                                        {isAdmin
+                                            ? 'Create your first project to get started'
+                                            : 'Projects will appear here when an admin assigns you a task'
+                                        }
+                                    </p>
                                 </div>
                             ) : (
-                                projects.slice(0, 5).map((project) => (
+                                visibleProjects.slice(0, 5).map((project) => (
                                     <Link
                                         key={project.id}
                                         to={`/projects/${project.id}`}

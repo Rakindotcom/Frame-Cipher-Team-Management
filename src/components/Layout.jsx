@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
+import TaskAlerts from './TaskAlerts';
 
 export default function Layout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -58,6 +59,7 @@ export default function Layout({ children }) {
                 {/* Main Content */}
                 <main className="main-container">
                     <div className="animate-fade-in">
+                        <TaskAlerts />
                         {children}
                     </div>
                 </main>

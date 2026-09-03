@@ -108,13 +108,13 @@ export default function FinancePage() {
                 </div>
 
                 {/* Navigation Tabs */}
-                <div className="border-b border-[--glass-border]">
-                    <nav className="flex space-x-8" aria-label="Finance sections">
+                <div className="border-b border-[--glass-border] overflow-x-auto">
+                    <nav className="flex min-w-max gap-6 sm:gap-8" aria-label="Finance sections">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => handleTabChange(tab.id)}
-                                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+                                className={`flex items-center gap-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
                                     activeTab === tab.id
                                         ? 'border-[--accent-cyan] text-[--accent-cyan]'
                                         : 'border-transparent text-[--text-muted] hover:text-[--text-primary] hover:border-[--text-muted]'

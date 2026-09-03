@@ -4,19 +4,27 @@ import ProjectCard from '../components/ProjectCard';
 import ProjectForm from '../components/ProjectForm';
 import Modal from '../components/Modal';
 import { useProjects } from '../context/ProjectsContext';
+import { useTasks } from '../context/TasksContext';
 import { useAuth } from '../context/AuthContext';
 
 export default function ProjectsPage() {
     const { projects, loading, addProject } = useProjects();
-    const { isAdmin } = useAuth();
+    const { user, isAdmin } = useAuth();
+    const { loading: tasksLoading, getTasksByProject } = useTasks();
     const [showCreateModal, setShowCreateModal] = useState(false);
+
+    const visibleProjects = isAdmin
+        ? projects
+        : projects.filter((project) =>
+            getTasksByProject(project.id).some((task) => task.assignedTo === user?.uid)
+        );
 
     const handleCreateProject = async (projectData) => {
         await addProject(projectData);
         setShowCreateModal(false);
     };
 
-    if (loading) {
+    if (loading || tasksLoading) {
         return (
             <Layout>
                 <div className="flex items-center justify-center py-20">
@@ -39,7 +47,7 @@ export default function ProjectsPage() {
                             Projects
                         </h1>
                         <p className="text-[--text-muted] mt-1">
-                            {projects.length} project{projects.length !== 1 ? 's' : ''} total
+                            {visibleProjects.length} project{visibleProjects.length !== 1 ? 's' : ''} total
                         </p>
                     </div>
                     {isAdmin && (
@@ -56,15 +64,20 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Projects Grid */}
-                {projects.length === 0 ? (
+                {visibleProjects.length === 0 ? (
                     <div className="glass-card-static">
                         <div className="empty-state py-16">
                             <svg className="empty-state-icon w-20 h-20 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                             </svg>
-                            <p className="empty-state-title text-lg">No projects yet</p>
+                            <p className="empty-state-title text-lg">
+                                {isAdmin ? 'No projects yet' : 'No assigned projects yet'}
+                            </p>
                             <p className="empty-state-description mb-6">
-                                Create your first project to start organizing your work
+                                {isAdmin
+                                    ? 'Create your first project to start organizing your work'
+                                    : 'Projects will appear here when an admin assigns you a task'
+                                }
                             </p>
                             {isAdmin && (
                                 <button
@@ -81,7 +94,7 @@ export default function ProjectsPage() {
                     </div>
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {projects.map((project, index) => (
+                        {visibleProjects.map((project, index) => (
                             <div
                                 key={project.id}
                                 className="animate-fade-in-up"

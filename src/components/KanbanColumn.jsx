@@ -28,15 +28,17 @@ export default function KanbanColumn({ column, onAddTask }) {
                     </span>
                     <span className="text-xs text-[--text-muted]">{tasks.length}</span>
                 </div>
-                <button
-                    onClick={onAddTask}
-                    className="p-1 rounded hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors"
-                    title="Add task"
-                >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                </button>
+                {onAddTask && (
+                    <button
+                        onClick={onAddTask}
+                        className="p-1 rounded hover:bg-[--bg-tertiary] text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                        title="Add task"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                    </button>
+                )}
             </div>
 
             {/* Droppable Area */}

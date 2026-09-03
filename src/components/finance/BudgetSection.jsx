@@ -136,14 +136,14 @@ export default function BudgetSection() {
     return (
         <div className="space-y-6">
             {/* Header with Add Button */}
-            <div className="flex items-center justify-between">
-                <div>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
                     <h2 className="text-xl font-semibold text-[--text-primary]">Budget Management</h2>
                     <p className="text-[--text-muted] mt-1">Plan and track budget allocations</p>
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
-                    className="btn btn-primary"
+                    className="btn btn-primary w-full sm:w-auto"
                 >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -155,27 +155,27 @@ export default function BudgetSection() {
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {/* Total Allocated */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Total Allocated</p>
-                        <p className="text-2xl font-bold text-[--accent-cyan]">
+                        <p className="text-xl sm:text-2xl font-bold text-[--accent-cyan] break-words">
                             {formatCurrency(totalAllocated)}
                         </p>
                     </div>
                 </div>
 
                 {/* Total Spent */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Total Spent</p>
-                        <p className="text-2xl font-bold text-[--accent-red]">
+                        <p className="text-xl sm:text-2xl font-bold text-[--accent-red] break-words">
                             {formatCurrency(totalSpent)}
                         </p>
                     </div>
                 </div>
 
                 {/* Active Budgets */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Active Budgets</p>
                         <p className="text-2xl font-bold text-[--accent-green]">
@@ -185,7 +185,7 @@ export default function BudgetSection() {
                 </div>
 
                 {/* Exceeded Budgets */}
-                <div className="glass-card-static">
+                <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                     <div className="text-center">
                         <p className="text-sm font-medium text-[--text-muted]">Over Budget</p>
                         <p className="text-2xl font-bold text-[--accent-red]">
@@ -196,7 +196,7 @@ export default function BudgetSection() {
             </div>
 
             {/* Budget List */}
-            <div className="glass-card-static">
+            <div className="glass-card-static p-4 sm:p-6 overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-semibold text-[--text-primary]">Budget Overview</h3>
                 </div>
@@ -231,31 +231,31 @@ export default function BudgetSection() {
                             const remaining = budget.allocatedAmount - budget.spentAmount;
                             
                             return (
-                                <div key={budget.id} className="p-6 bg-[--bg-secondary] rounded-lg hover:bg-[--bg-tertiary] transition-colors">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div className="flex-1">
-                                            <div className="flex items-center space-x-3 mb-2">
-                                                <h4 className="text-lg font-semibold text-[--text-primary]">{budget.name}</h4>
+                                <div key={budget.id} className="p-4 sm:p-6 bg-[--bg-secondary] rounded-lg hover:bg-[--bg-tertiary] transition-colors min-w-0">
+                                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between mb-4">
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                                                <h4 className="text-base sm:text-lg font-semibold text-[--text-primary] break-words">{budget.name}</h4>
                                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(budget.status)}`}>
                                                     {budget.status}
                                                 </span>
                                             </div>
-                                            <div className="flex items-center space-x-4 text-sm text-[--text-muted]">
+                                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[--text-muted]">
                                                 <span>{budget.category}</span>
                                                 <span>•</span>
                                                 <span>{formatDate(budget.startDate)} - {formatDate(budget.endDate)}</span>
                                                 {project && (
                                                     <>
                                                         <span>•</span>
-                                                        <span>{project.name}</span>
+                                                        <span className="break-words">{project.name}</span>
                                                     </>
                                                 )}
                                             </div>
                                             {budget.description && (
-                                                <p className="text-sm text-[--text-muted] mt-2">{budget.description}</p>
+                                                <p className="text-sm text-[--text-muted] mt-2 break-words">{budget.description}</p>
                                             )}
                                         </div>
-                                        <div className="flex items-center space-x-2">
+                                        <div className="flex items-center gap-2 shrink-0">
                                             <button
                                                 onClick={() => handleEdit(budget)}
                                                 className="p-2 text-[--text-muted] hover:text-[--accent-cyan] hover:bg-[--accent-cyan]/10 rounded-lg transition-colors"
@@ -279,7 +279,7 @@ export default function BudgetSection() {
 
                                     {/* Budget Progress */}
                                     <div className="space-y-3">
-                                        <div className="flex items-center justify-between text-sm">
+                                        <div className="flex items-center justify-between gap-3 text-sm">
                                             <span className="text-[--text-muted]">Budget Utilization</span>
                                             <span className={`font-medium ${isOverBudget ? 'text-[--accent-red]' : 'text-[--text-primary]'}`}>
                                                 {utilization.toFixed(1)}%
@@ -291,16 +291,16 @@ export default function BudgetSection() {
                                                 style={{ width: `${Math.min(utilization, 100)}%` }}
                                             ></div>
                                         </div>
-                                        <div className="flex items-center justify-between text-sm">
-                                            <div>
+                                        <div className="grid gap-2 text-sm sm:grid-cols-2">
+                                            <div className="min-w-0">
                                                 <span className="text-[--text-muted]">Spent: </span>
-                                                <span className="font-medium text-[--accent-red]">
+                                                <span className="font-medium text-[--accent-red] break-words">
                                                     {formatCurrency(budget.spentAmount)}
                                                 </span>
                                             </div>
-                                            <div>
+                                            <div className="min-w-0 sm:text-right">
                                                 <span className="text-[--text-muted]">Allocated: </span>
-                                                <span className="font-medium text-[--text-primary]">
+                                                <span className="font-medium text-[--text-primary] break-words">
                                                     {formatCurrency(budget.allocatedAmount)}
                                                 </span>
                                             </div>

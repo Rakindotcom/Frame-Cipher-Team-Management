@@ -10,9 +10,9 @@ const COLUMNS = [
     { id: 'done', title: 'Done', color: 'cyan' }
 ];
 
-export default function KanbanBoard({ projectId, onAddTask }) {
+export default function KanbanBoard({ projectId, tasks: providedTasks, onAddTask, canAddTask = true }) {
     const { getTasksByProject, editTask } = useTasks();
-    const tasks = getTasksByProject(projectId);
+    const tasks = providedTasks || getTasksByProject(projectId);
 
     // Group tasks by status
     const columns = COLUMNS.map(col => ({
@@ -50,7 +50,7 @@ export default function KanbanBoard({ projectId, onAddTask }) {
                     <KanbanColumn
                         key={column.id}
                         column={column}
-                        onAddTask={() => onAddTask(column.id)}
+                        onAddTask={canAddTask && onAddTask ? () => onAddTask(column.id) : null}
                     />
                 ))}
             </div>

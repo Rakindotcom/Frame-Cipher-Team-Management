@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useProjects } from '../context/ProjectsContext';
+import { useTasks } from '../context/TasksContext';
 import { signOut } from '../firebase/auth';
 import { getInitials, getAvatarColor } from '../utils/helpers';
 
 export default function Sidebar({ isOpen, onToggle }) {
-    const { userProfile, isAdmin } = useAuth();
+    const { user, userProfile, isAdmin } = useAuth();
     const { projects } = useProjects();
+    const { getTasksByProject } = useTasks();
     const location = useLocation();
     const navigate = useNavigate();
     const [projectsExpanded, setProjectsExpanded] = useState(true);
@@ -52,20 +54,20 @@ export default function Sidebar({ isOpen, onToggle }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                 </svg>
             )
-        },
-        {
-            to: '/clients',
-            label: 'Clients',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8m0 0h8m-8 0a2 2 0 00-2 2v6a2 2 0 002 2h8a2 2 0 002-2V8a2 2 0 00-2-2z" />
-                </svg>
-            )
         }
     ];
 
     if (isAdmin) {
         mainNavItems.push(
+            {
+                to: '/clients',
+                label: 'Clients',
+                icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8m0 0h8m-8 0a2 2 0 00-2 2v6a2 2 0 002 2h8a2 2 0 002-2V8a2 2 0 00-2-2z" />
+                    </svg>
+                )
+            },
             {
                 to: '/users',
                 label: 'Team',
@@ -86,6 +88,12 @@ export default function Sidebar({ isOpen, onToggle }) {
             }
         );
     }
+
+    const visibleProjects = isAdmin
+        ? projects
+        : projects.filter((project) =>
+            getTasksByProject(project.id).some((task) => task.assignedTo === user?.uid)
+        );
 
     return (
         <>
@@ -154,10 +162,12 @@ export default function Sidebar({ isOpen, onToggle }) {
 
                         {projectsExpanded && (
                             <div className="space-y-0.5 mt-1">
-                                {projects.length === 0 ? (
-                                    <p className="px-3 py-2 text-xs text-[--text-muted] sidebar-label">No projects yet</p>
+                                {visibleProjects.length === 0 ? (
+                                    <p className="px-3 py-2 text-xs text-[--text-muted] sidebar-label">
+                                        {isAdmin ? 'No projects yet' : 'No assigned projects'}
+                                    </p>
                                 ) : (
-                                    projects.map((project) => (
+                                    visibleProjects.map((project) => (
                                         <Link
                                             key={project.id}
                                             to={`/projects/${project.id}`}
